@@ -1084,6 +1084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1993874708354677412}
+  - component: {fileID: 1993874708354677413}
   m_Layer: 0
   m_Name: female
   m_TagString: Untagged
@@ -1329,6 +1330,28 @@ Transform:
   - {fileID: 5322394440445108607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1993874708354677413
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216106963976183838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b8c23e9198b11ff48ba9994deb4b1048, type: 3}
+  m_Controller: {fileID: 9100000, guid: f773e2a470f66d244b1dd0aff400e51e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &2028122480514391570
 Transform:
   m_ObjectHideFlags: 0
@@ -3263,11 +3286,11 @@ SkinnedMeshRenderer:
   - {fileID: 1161854557619033802}
   m_BlendShapeWeights:
   - 0
+  - 100
   - 0
   - 0
   - 0
-  - 0
-  - 0
+  - 100
   - 0
   - 0
   - 0
@@ -4751,6 +4774,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8007721495711129719}
   - component: {fileID: 6070514150361661426}
+  - component: {fileID: 8007721495711129720}
   m_Layer: 0
   m_Name: CC_Base_Body
   m_TagString: Untagged
@@ -4773,6 +4797,159 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1993874708354677412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8007721495711129720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8007198216308861945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2892c13bfc6c26b42bddd159e19f26c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ModelSkinRendererAsianFemale
+  skinnedMeshRenderer: {fileID: 6070514150361661426}
+  mesh: {fileID: 2988033852023935963, guid: b8c23e9198b11ff48ba9994deb4b1048, type: 3}
+  Empty:
+  - V_Open
+  - V_Explosive
+  - V_Tight_O
+  - V_Tight
+  - V_Wide
+  - V_Affricate
+  - V_Lip_Open
+  - Brow_Raise_Inner_L
+  - Brow_Raise_Inner_R
+  - Brow_Raise_Outer_L
+  - Brow_Raise_Outer_R
+  - Brow_Drop_L
+  - Brow_Drop_R
+  - Brow_Compress_L
+  - Brow_Compress_R
+  - Eye_Blink_L
+  - Eye_Blink_R
+  - Nose_Sneer_L
+  - Nose_Sneer_R
+  - Nose_Nostril_Raise_L
+  - Nose_Nostril_Raise_R
+  - Nose_Nostril_Dilate_L
+  - Nose_Nostril_Dilate_R
+  - Nose_Crease_L
+  - Nose_Crease_R
+  - Nose_Nostril_Down_L
+  - Nose_Nostril_Down_R
+  - Nose_Nostril_In_L
+  - Nose_Nostril_In_R
+  - Nose_Tip_L
+  - Nose_Tip_R
+  - Nose_Tip_Up
+  - Nose_Tip_Down
+  - Cheek_Raise_L
+  - Cheek_Raise_R
+  - Cheek_Suck_L
+  - Cheek_Suck_R
+  - Cheek_Puff_L
+  - Cheek_Puff_R
+  - Neck_Swallow_Up
+  - Neck_Swallow_Down
+  - Neck_Tighten_L
+  - Neck_Tighten_R
+  - Head_Turn_Up
+  - Head_Turn_Down
+  - Head_Turn_L
+  - Head_Turn_R
+  - Head_Tilt_L
+  - Head_Tilt_R
+  - Head_L
+  - Head_R
+  - Head_Forward
+  - Head_Backward
+  - Jaw_Open
+  - Jaw_Forward
+  - Jaw_Backward
+  - Jaw_L
+  - Jaw_R
+  - Jaw_Up
+  - Jaw_Down
+  - Eyelash_Upper_Up_L
+  - Eyelash_Upper_Down_L
+  - Eyelash_Upper_Up_R
+  - Eyelash_Upper_Down_R
+  - Tongue_Bulge_L
+  - Tongue_Bulge_R
+  - Eye_Squint_L
+  - Eye_Squint_R
+  - Eye_Wide_L
+  - Eye_Wide_R
+  - Eye_L_Look_L
+  - Eye_L_Look_R
+  - Eye_R_Look_L
+  - Eye_R_Look_R
+  - Eye_L_Look_Up
+  - Eye_R_Look_Up
+  - Eye_L_Look_Down
+  - Eye_R_Look_Down
+  - Ear_Up_L
+  - Ear_Up_R
+  - Ear_Down_L
+  - Ear_Down_R
+  - Ear_Out_L
+  - Ear_Out_R
+  - Mouth_Smile_L
+  - Mouth_Smile_R
+  - Mouth_Smile_Sharp_L
+  - Mouth_Smile_Sharp_R
+  - Mouth_Frown_L
+  - Mouth_Frown_R
+  - Mouth_Stretch_L
+  - Mouth_Stretch_R
+  - Mouth_Dimple_L
+  - Mouth_Dimple_R
+  - Mouth_Press_L
+  - Mouth_Press_R
+  - Mouth_Tighten_L
+  - Mouth_Tighten_R
+  - Mouth_Blow_L
+  - Mouth_Blow_R
+  - Mouth_Pucker_Up_L
+  - Mouth_Pucker_Up_R
+  - Mouth_Pucker_Down_L
+  - Mouth_Pucker_Down_R
+  - Mouth_Funnel_Up_L
+  - Mouth_Funnel_Up_R
+  - Mouth_Funnel_Down_L
+  - Mouth_Funnel_Down_R
+  - Mouth_Roll_In_Upper_L
+  - Mouth_Roll_In_Upper_R
+  - Mouth_Roll_In_Lower_L
+  - Mouth_Roll_In_Lower_R
+  - Mouth_Roll_Out_Upper_L
+  - Mouth_Roll_Out_Upper_R
+  - Mouth_Roll_Out_Lower_L
+  - Mouth_Roll_Out_Lower_R
+  - Mouth_Push_Upper_L
+  - Mouth_Push_Upper_R
+  - Mouth_Push_Lower_L
+  - Mouth_Push_Lower_R
+  - Mouth_Pull_Upper_L
+  - Mouth_Pull_Upper_R
+  - Mouth_Pull_Lower_L
+  - Mouth_Pull_Lower_R
+  - Mouth_Up
+  - Mouth_Down
+  - Mouth_L
+  - Mouth_R
+  - Mouth_Upper_L
+  - Mouth_Upper_R
+  - Mouth_Down_Lower_L
+  - Mouth_Down_Lower_R
+  - Mouth_Chin_Up
+  - Mouth_Close
+  - Mouth_Contract
+  weigth: 0
+  Growbigger: 0
+  Limit: []
 --- !u!4 &8133454913451125387
 Transform:
   m_ObjectHideFlags: 0
