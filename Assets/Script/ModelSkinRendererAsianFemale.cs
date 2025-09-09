@@ -25,12 +25,8 @@ public class ModelSkinRendererAsianFemale : MonoBehaviour
         {
            Growbigger += 0.3f;
         }
-        for(int i = 0; i < Empty.Length; i++)
-        {
-            
-             GetBlendShape(Empty[i], weigth);
-            
-        } 
+
+        
        
     }
     public void GetBlendShape(string ShapeName, float weigth)
@@ -49,5 +45,14 @@ public class ModelSkinRendererAsianFemale : MonoBehaviour
     {
          GetBlendShape(Empty[1], 100);
          GetBlendShape(Empty[3], 100);
+          GetBlendShape(Empty[132], 100);
+          GetBlendShape(Empty[4], 100);
+    }
+    public void CloseLook()
+    {
+         GetBlendShape(Empty[1], 100);
+         GetBlendShape(Empty[3], 100);
+          GetBlendShape(Empty[132], 100);
+        GetBlendShape(Empty[4], 50);
     }
 }
