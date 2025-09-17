@@ -822,7 +822,24 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Standalone: CMS_SALSA
+    Android: FG_GCSR
+    EmbeddedLinux: FG_GCSR
+    GameCoreScarlett: FG_GCSR
+    GameCoreXboxOne: FG_GCSR
+    Kepler: FG_GCSR
+    LinuxHeadlessSimulation: FG_GCSR
+    Nintendo Switch: FG_GCSR
+    PS4: FG_GCSR
+    PS5: FG_GCSR
+    QNX: FG_GCSR
+    ReservedCFE: FG_GCSR
+    Standalone: CMS_SALSA;FG_GCSR
+    VisionOS: FG_GCSR
+    WebGL: FG_GCSR
+    Windows Store Apps: FG_GCSR
+    XboxOne: FG_GCSR
+    iPhone: FG_GCSR
+    tvOS: FG_GCSR
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
