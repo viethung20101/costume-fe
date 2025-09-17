@@ -17,5 +17,6 @@ MonoBehaviour:
   useVolumeMultiplier: 0
   audioVolumeMultiplier: 1
   enabledAPIKeyValidation: 1
-  keySignature: 
+  keySignature: AIzaSyAfwISCeYtVin9qw5a-l6kZ-AVuWOi2TeE
   packageName: com.companyname.appname
+  NamePlayer: huy

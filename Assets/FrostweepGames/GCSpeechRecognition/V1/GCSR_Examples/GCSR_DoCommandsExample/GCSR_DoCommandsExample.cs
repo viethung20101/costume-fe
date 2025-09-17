@@ -213,6 +213,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 				case "rotate right":
 					_objectForCommand.Rotate(0, 0, -30);
 					break;
+				case "chạy lên":
+					_objectForCommand.anchoredPosition += Vector2.up * speed;
+					break;
 				default:
 					Debug.Log("NOT FOUND COMAND IN LIST OF HANDLERS");
 					break;

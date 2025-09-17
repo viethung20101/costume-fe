@@ -18,6 +18,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 		public string keySignature;
 
 		public string packageName;
+		public string NamePlayer;
 
 		public Config()
 		{
@@ -28,6 +29,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 			enabledAPIKeyValidation = false;
 			keySignature = string.Empty;
 			packageName = "com.companyname.appname";
+			Debug.Log(NamePlayer);
 		}
 	}
 }
