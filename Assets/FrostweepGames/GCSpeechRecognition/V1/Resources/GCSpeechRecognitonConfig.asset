@@ -16,6 +16,6 @@ MonoBehaviour:
   voiceDetectionEndTalkingDelay: 1
   useVolumeMultiplier: 0
   audioVolumeMultiplier: 1
-  enabledAPIKeyValidation: 0
+  enabledAPIKeyValidation: 1
   keySignature: 
   packageName: com.companyname.appname
