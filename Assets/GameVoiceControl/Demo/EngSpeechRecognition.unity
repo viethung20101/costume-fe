@@ -211,462 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2f24a95b91b1242b44e9b675bf035f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &134095460
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 545.6636
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 348.03882
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.4199219
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4231080758368744, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: log
-      value: 
-      objectReference: {fileID: 30390907}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: lang
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: Enable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: keyword
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: vadThreshold
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[0].name
-      value: main
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[1].name
-      value: main
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[0].words.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[1].words.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[0].commands.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[0]'
-      value: rotate to the left
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[1]'
-      value: rotate to the right
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[2]'
-      value: rotate up
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[3]'
-      value: rotate down
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[4]'
-      value: "\u044F\u0431\u043B\u043E\u043A\u043E"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[5]'
-      value: "\u0433\u043B\u0430\u0437"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[6]'
-      value: the
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].words.Array.data[7]'
-      value: stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[0]'
-      value: "\u0432\u043B\u0435\u0432\u043E"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[1]'
-      value: "\u0432\u043F\u0440\u0430\u0432\u043E"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[2]'
-      value: "\u0432\u0432\u0435\u0440\u0445"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[3]'
-      value: "\u0432\u043D\u0438\u0437"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[4]'
-      value: turn
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[5]'
-      value: to
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[6]'
-      value: the
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].words.Array.data[7]'
-      value: stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[0]'
-      value: rotate to the left
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[1]'
-      value: rotate to the right
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[2]'
-      value: rotate down
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[3]'
-      value: rotate up
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[4]'
-      value: stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 687061432}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1342317726}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1633355266}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onReceiveRecognitionResult
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_text
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114949781695093622, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: log
-      value: 
-      objectReference: {fileID: 30390907}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: lang
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: Enable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: keyword
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: microphoneName
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: microphoneIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: timeoutInterval
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: keywordThreshold
-      value: 1e-40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[0].name
-      value: main
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[1].name
-      value: child
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: pairsOfGraphemePhonemes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: pairsOfGraphemePhonemes.Array.data[0].Phoneme
-      value: F EY K W ER D HH IY R
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: pairsOfGraphemePhonemes.Array.data[0].Grapheme
-      value: fakewordhere
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[0].commands.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: grammarStructs.Array.data[1].commands.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[0]'
-      value: stop
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[1]'
-      value: rotate to the left
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[2]'
-      value: rotate to the right
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[3]'
-      value: rotate up
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[4]'
-      value: rotate down
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[0].commands.Array.data[5]'
-      value: hi siri
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[0]'
-      value: back
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[1]'
-      value: rotate to the left
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[2]'
-      value: rotate to the right
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[3]'
-      value: rotate up
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[4]'
-      value: rotate down
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: 'grammarStructs.Array.data[1].commands.Array.data[5]'
-      value: switch
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 687061432}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1342317726}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1633355266}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onReceiveRecognitionResult
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: set_text
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Controller, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.UI.Text, UnityEngine.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: InitResult.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: RecognitionResult.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7635456547060765551, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-      propertyPath: m_Name
-      value: GameVoiceControl
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7d1186e963384854aa89e294c4955605, type: 3}
---- !u!114 &181495268 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7635456545548113014, guid: 7d1186e963384854aa89e294c4955605, type: 3}
-  m_PrefabInstance: {fileID: 134095460}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c084ac93e1d2f942aa6b51f82bc4b20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &223754323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,7 +1058,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 181495268}
+      - m_Target: {fileID: 7635456545436579346}
         m_TargetAssemblyTypeName: 
         m_MethodName: onStartListening
         m_Mode: 1
@@ -2206,7 +1750,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 181495268}
+      - m_Target: {fileID: 7635456545436579346}
         m_TargetAssemblyTypeName: 
         m_MethodName: onStopListening
         m_Mode: 1
@@ -3554,11 +3098,117 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e04b465347e431943b44a52b99d7963e, type: 3}
+--- !u!114 &7635456545436579346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635456547145052427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c084ac93e1d2f942aa6b51f82bc4b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enable: 1
+  lang: 0
+  keyword: 
+  keywordThreshold: 1e-40
+  vadThreshold: 4
+  microphoneIndex: 0
+  timeoutInterval: 1000
+  grammarStructs:
+  - name: main
+    commands:
+    - stop
+    - rotate to the left
+    - rotate to the right
+    - rotate up
+    - rotate down
+    - hi siri
+  pairsOfGraphemePhonemes:
+  - Grapheme: fakewordhere
+    Phoneme: F EY K W ER D HH IY R
+  RecognitionResult:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1342317726}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: onReceiveRecognitionResult
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1633355266}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  InitResult:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 687061432}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  log: {fileID: 30390907}
+--- !u!4 &7635456547145052426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635456547145052427}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 545.6636, y: 348.03882, z: -1.4199219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7635456547145052427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7635456547145052426}
+  - component: {fileID: 7635456545436579346}
+  m_Layer: 0
+  m_Name: GameVoiceControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 134095460}
+  - {fileID: 7635456547145052426}
   - {fileID: 2097801190}
   - {fileID: 825569100}
   - {fileID: 237404595}
