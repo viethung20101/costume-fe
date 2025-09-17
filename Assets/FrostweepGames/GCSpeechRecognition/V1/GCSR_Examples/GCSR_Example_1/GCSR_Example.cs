@@ -8,8 +8,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
 	public class GCSR_Example : MonoBehaviour
 	{
+		public bool isFuction;
 		private GCSpeechRecognition _speechRecognition;
-
+		public Button Choose;
 		private Button _startRecordButton,
 					   _stopRecordButton,
 					   _getOperationButton,
@@ -202,7 +203,24 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
 			_speechRecognition.StopRecord();
 		}
-
+        public void On_Fuction_Mic()
+		{
+			Choose.interactable = false;
+			isFuction = true;
+			if(isFuction == true)
+			{
+				_speechRecognition.StartRecord(_voiceDetectionToggle.isOn);
+			}
+		}
+		public void Off_Fuction_Mic()
+		{
+			Choose.interactable = true;
+			isFuction = false;
+			if(isFuction == false)
+			{
+				_speechRecognition.StopRecord();
+			}
+		}
 		private void GetOperationButtonOnClickHandler()
 		{
 			if(string.IsNullOrEmpty(_operationIdInputField.text))
