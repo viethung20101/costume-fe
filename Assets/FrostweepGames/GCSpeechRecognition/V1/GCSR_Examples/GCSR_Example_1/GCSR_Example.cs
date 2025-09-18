@@ -3,11 +3,12 @@ using System.Linq;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Tools;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections.Generic ;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
 	public class GCSR_Example : MonoBehaviour
 	{
+		public GameObject[] Button_Change_languge;
 		public bool isFuction;
 		private GCSpeechRecognition _speechRecognition;
 		public Button Choose;
@@ -31,6 +32,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
 		private Dropdown _languageDropdown,
 						 _microphoneDevicesDropdown;
+	    public Dropdown _languageDropdownC;
 
 		private InputField _contextPhrasesInputField,
 						   _operationIdInputField;
@@ -56,7 +58,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 			_speechRecognition.ListOperationsFailedEvent += ListOperationsFailedEventHandler;
 
 			_speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
-			_speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
+             			_speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
 			_speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
 
 			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
@@ -110,7 +112,12 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 				_languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
 			}
 
-			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
+				_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse()));
+            for(int i = 0; i < Button_Change_languge.Length; i++)
+			{
+              Button_Change_languge[i].SetActive(false);
+			}
+            Button_Change_languge[1].SetActive(true);
 
 			RefreshMicsButtonOnClickHandler();
 
@@ -203,6 +210,24 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
 			_speechRecognition.StopRecord();
 		}
+		public void Change_VN()
+		{
+			for(int i = 0; i < Button_Change_languge.Length; i++)
+			{
+              Button_Change_languge[i].SetActive(false);
+			}
+            Button_Change_languge[1].SetActive(true);
+           			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse()));
+		}
+		public void Change_EN()
+		{
+			for(int i = 0; i < Button_Change_languge.Length; i++)
+			{
+              Button_Change_languge[i].SetActive(false);
+			}
+            Button_Change_languge[0].SetActive(true);
+			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
+		}
         public void On_Fuction_Mic()
 		{
 			Choose.interactable = false;
@@ -214,6 +239,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 		}
 		public void Off_Fuction_Mic()
 		{
+			
 			Choose.interactable = true;
 			isFuction = false;
 			if(isFuction == false)
