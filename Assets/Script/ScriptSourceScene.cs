@@ -4,7 +4,6 @@ using System.Collections;
 public class ScriptSourceScene : MonoBehaviour
 {
     static public int _Source;
-    public int D_Source;
     private void Awake()
     {
        _Source = 1;
