@@ -6,13 +6,14 @@ public class ScriptButtonFunction : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] GameObject[] Model_Character;
     [SerializeField] private Vector3 InitalScale;
+    [SerializeField] GameObject[] ScrollAreaVertical;
     private void Awake()
     {
         InitalScale = transform.localScale;
     }
     void Start()
     {
-     
+      
     }
    public void On_Button()
    {
@@ -25,6 +26,11 @@ public class ScriptButtonFunction : MonoBehaviour
        
     }
     Model_Character[0].SetActive(true);
+     for(int i =0; i < ScrollAreaVertical.Length; i++)
+        {
+            ScrollAreaVertical[i].SetActive(false);
+        }
+          ScrollAreaVertical[0].SetActive(true);
    }
    public void Off_Button()
    {

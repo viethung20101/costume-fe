@@ -822,24 +822,24 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: FG_GCSR
-    EmbeddedLinux: FG_GCSR
-    GameCoreScarlett: FG_GCSR
-    GameCoreXboxOne: FG_GCSR
-    Kepler: FG_GCSR
-    LinuxHeadlessSimulation: FG_GCSR
-    Nintendo Switch: FG_GCSR
-    PS4: FG_GCSR
-    PS5: FG_GCSR
-    QNX: FG_GCSR
-    ReservedCFE: FG_GCSR
-    Standalone: CMS_SALSA;FG_GCSR
-    VisionOS: FG_GCSR
-    WebGL: FG_GCSR
-    Windows Store Apps: FG_GCSR
-    XboxOne: FG_GCSR
-    iPhone: FG_GCSR
-    tvOS: FG_GCSR
+    Android: FG_GCSR;DOTWEEN
+    EmbeddedLinux: FG_GCSR;DOTWEEN
+    GameCoreScarlett: FG_GCSR;DOTWEEN
+    GameCoreXboxOne: FG_GCSR;DOTWEEN
+    Kepler: FG_GCSR;DOTWEEN
+    LinuxHeadlessSimulation: FG_GCSR;DOTWEEN
+    Nintendo Switch: FG_GCSR;DOTWEEN
+    PS4: FG_GCSR;DOTWEEN
+    PS5: FG_GCSR;DOTWEEN
+    QNX: FG_GCSR;DOTWEEN
+    ReservedCFE: FG_GCSR;DOTWEEN
+    Standalone: CMS_SALSA;FG_GCSR;DOTWEEN
+    VisionOS: FG_GCSR;DOTWEEN
+    WebGL: FG_GCSR;DOTWEEN
+    Windows Store Apps: FG_GCSR;DOTWEEN
+    XboxOne: FG_GCSR;DOTWEEN
+    iPhone: FG_GCSR;DOTWEEN
+    tvOS: FG_GCSR;DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
