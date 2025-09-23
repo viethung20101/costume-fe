@@ -11,6 +11,8 @@ public class ScriptChoose : MonoBehaviour
    [SerializeField] private float Range;
    [SerializeField] Transform FeetPos;
    [SerializeField] Button button;
+   [SerializeField] SourceScene sourceScene;
+   public int Index;
       private void Awake()
     {
         InitalScale = transform.localScale;
@@ -25,6 +27,7 @@ public class ScriptChoose : MonoBehaviour
       InCreateScale(true);
       StartCoroutine(StopTemporary());
       button.interactable = false;
+      sourceScene.Source = Index;
    }
     public void Off_Button()
    {

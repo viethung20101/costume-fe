@@ -282,7 +282,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 642270108}
-  - component: {fileID: 642270107}
   m_Layer: 0
   m_Name: 'Source '
   m_TagString: Untagged
@@ -290,19 +289,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &642270107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642270106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 336b98870e52aa44e9da5d82139858c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScriptSourceScene
-  CurrentSource: 0
 --- !u!4 &642270108
 Transform:
   m_ObjectHideFlags: 0
@@ -639,7 +625,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScriptImageLogo
   ImageLogo: {fileID: 1144973186}
-  scriptSourceScene: {fileID: 642270107}
+  scriptSourceScene: {fileID: 11400000, guid: 19758865957bd3a44847872a90d0221a, type: 2}
+  Range: 3.2
+  nameScene:
+  - Menu_1
+  - Vua_Nha_Ly
+  - Vua_Nha_Nguyen
+  - Vua_Nha_Tran
+  - Vua_Tien_Le
+  - Vua_Nha_Ngo
+  - "Vua_Nha_\u0110inh"
+  - Vua_Nha_Ho
 --- !u!114 &1144973186
 MonoBehaviour:
   m_ObjectHideFlags: 0
