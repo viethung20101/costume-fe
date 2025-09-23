@@ -4,16 +4,20 @@ using System.Collections;
 public class ScriptSourceScene : MonoBehaviour
 {
     static public int _Source;
+    public int CurrentSource;
+    public static ScriptSourceScene Instance;
     private void Awake()
     {
-       _Source = 1;
+     _Source =  CurrentSource;
         if(PlayerPrefs.HasKey("HighSource"))
         {
            Source = PlayerPrefs.GetInt("HighSource");
+       
         }
         else
         {
-           PlayerPrefs.GetInt("HighSource",Source);
+           PlayerPrefs.SetInt("HighSource",Source);
+         
         }
     }
     static public int Source
