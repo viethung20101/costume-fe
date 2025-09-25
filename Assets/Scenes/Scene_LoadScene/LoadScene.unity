@@ -629,13 +629,7 @@ MonoBehaviour:
   Range: 3.2
   nameScene:
   - Menu_1
-  - Vua_Nha_Ly
-  - Vua_Nha_Nguyen
-  - Vua_Nha_Tran
-  - Vua_Tien_Le
-  - Vua_Nha_Ngo
-  - "Vua_Nha_\u0110inh"
-  - Vua_Nha_Ho
+  - Vua
 --- !u!114 &1144973186
 MonoBehaviour:
   m_ObjectHideFlags: 0

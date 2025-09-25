@@ -12,6 +12,8 @@ public class ScriptChoose : MonoBehaviour
    [SerializeField] Transform FeetPos;
    [SerializeField] Button button;
    [SerializeField] SourceScene sourceScene;
+   [SerializeField] IndexSelectCharacter indexSelectCharacter;
+   public int IndexCharater;
    public int Index;
       private void Awake()
     {
@@ -24,6 +26,7 @@ public class ScriptChoose : MonoBehaviour
 
    public void Choose()
    {
+      indexSelectCharacter.Select = IndexCharater; 
       InCreateScale(true);
       StartCoroutine(StopTemporary());
       button.interactable = false;
