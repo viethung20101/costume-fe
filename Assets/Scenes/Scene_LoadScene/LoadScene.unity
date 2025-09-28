@@ -630,6 +630,7 @@ MonoBehaviour:
   nameScene:
   - Menu_1
   - Vua
+  - "Quan V\xF5"
 --- !u!114 &1144973186
 MonoBehaviour:
   m_ObjectHideFlags: 0
