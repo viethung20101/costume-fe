@@ -39,8 +39,10 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
-  m_VirtualRealitySplashScreen: {fileID: 0}
+  m_SplashScreenLogos:
+  - logo: {fileID: 53608058, guid: 735b08f980a4a414ebde98856a129208, type: 3}
+    duration: 2
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 735b08f980a4a414ebde98856a129208, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
@@ -292,7 +294,14 @@ PlayerSettings:
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 735b08f980a4a414ebde98856a129208, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone
     m_Icons:
@@ -789,7 +798,7 @@ PlayerSettings:
   ps4IncludedModules: []
   ps4attribVROutputEnabled: 0
   monoEnv: 
-  splashScreenBackgroundSourceLandscape: {fileID: 0}
+  splashScreenBackgroundSourceLandscape: {fileID: 575747102, guid: 6f68d9c9783d98241aee1301ed06a1fa, type: 3}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
@@ -821,7 +830,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: FG_GCSR;DOTWEEN
+    EmbeddedLinux: FG_GCSR;DOTWEEN
+    GameCoreScarlett: FG_GCSR;DOTWEEN
+    GameCoreXboxOne: FG_GCSR;DOTWEEN
+    Kepler: FG_GCSR;DOTWEEN
+    LinuxHeadlessSimulation: FG_GCSR;DOTWEEN
+    Nintendo Switch: FG_GCSR;DOTWEEN
+    PS4: FG_GCSR;DOTWEEN
+    PS5: FG_GCSR;DOTWEEN
+    QNX: FG_GCSR;DOTWEEN
+    ReservedCFE: FG_GCSR;DOTWEEN
+    Standalone: CMS_SALSA;FG_GCSR;DOTWEEN
+    VisionOS: FG_GCSR;DOTWEEN
+    WebGL: FG_GCSR;DOTWEEN
+    Windows Store Apps: FG_GCSR;DOTWEEN
+    XboxOne: FG_GCSR;DOTWEEN
+    iPhone: FG_GCSR;DOTWEEN
+    tvOS: FG_GCSR;DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -919,7 +946,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 3
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: a535e411-94cc-4f84-9cc1-b5f737089bf7
   framebufferDepthMemorylessMode: 0

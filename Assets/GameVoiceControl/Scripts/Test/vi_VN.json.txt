@@ -1,0 +1,10 @@
+{
+  "menu_start": "Bắt đầu",
+  "menu_settings": "Cài đặt",
+  "menu_exit": "Thoát",
+  "voice_command_not_found": "Không nhận diện được lệnh",
+  "microphone": "Micro",
+  "language": "Ngôn ngữ",
+  "pause": "Tạm dừng",
+  "resume": "Tiếp tục"
+}
