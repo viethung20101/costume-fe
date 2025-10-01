@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 public class LoginController : MonoBehaviour
 {
     public TMP_InputField emailInputField;
@@ -14,6 +15,7 @@ public class LoginController : MonoBehaviour
 
     void Start()
     {
+        
         loginButton.onClick.AddListener(OnLoginClicked);
         emailErrorText.text = "";
         passwordErrorText.text = "";
@@ -24,11 +26,9 @@ public class LoginController : MonoBehaviour
         // Clear Error Texts
         emailErrorText.text = "";
         passwordErrorText.text = "";
-        
         string email = emailInputField.text.Trim();
         string password = passwordInputField.text.Trim();
 
-        //Email validation
         if (string.IsNullOrEmpty(email))
         {
             emailErrorText.text = "Email không được để trống!";
@@ -39,13 +39,13 @@ public class LoginController : MonoBehaviour
             emailErrorText.text = "Email không hợp lệ!";
             return;
         }
-        //Password validation
         if (string.IsNullOrEmpty(password))
         {
             passwordErrorText.text = "Mật khẩu không được để trống!";
             return;
         }
 
+        LoadingUI.Instance.Show();
         StartCoroutine(new AuthAPIs().LoginRequest(
             email,
             password,
@@ -54,17 +54,19 @@ public class LoginController : MonoBehaviour
                 StartCoroutine(new AuthAPIs().GetProfileRequest(
                     (profile) =>
                     {
-                        Debug.Log("Profile " + profile.ToString());
-                        // Chuyển scene hoặc thực hiện hành động khác sau khi lấy profile thành công
+                        LoadingUI.Instance.Hide();
+                        SceneManager.LoadScene("Menu_1");
                     },
                     (error) =>
                     {
+                        LoadingUI.Instance.Hide();
                         Debug.LogError("Get profile lỗi: " + error);
                     }
                 ));
             },
             (error) =>
             {
+                LoadingUI.Instance.Hide();
                 Debug.LogError("Login thất bại: " + error);
                 passwordErrorText.text = "Sai email hoặc mật khẩu!";
             }
@@ -78,7 +80,7 @@ public class LoginController : MonoBehaviour
     }
     bool IsValidPassword(string password)
     {
-        string pattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$";
+        string pattern = @"^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$"; // Ít nhất 6 ký tự, 1 chữ hoa, 1 số, 1 ký tự đặc biệt
         return Regex.IsMatch(password, pattern);
     }
 
