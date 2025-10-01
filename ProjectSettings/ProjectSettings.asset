@@ -831,7 +831,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: FG_GCSR;DOTWEEN
+    Android: FG_GCSR;DOTWEEN;CMS_SALSA
     EmbeddedLinux: FG_GCSR;DOTWEEN
     GameCoreScarlett: FG_GCSR;DOTWEEN
     GameCoreXboxOne: FG_GCSR;DOTWEEN
@@ -946,7 +946,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 3
   captureStartupLogs: {}
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: a535e411-94cc-4f84-9cc1-b5f737089bf7
   framebufferDepthMemorylessMode: 0
