@@ -61,9 +61,9 @@ public class HomeController : MonoBehaviour
 
                 if (EraManager.Instance.eras.Count > 0)
                 {
-                    PlayerPrefs.SetString("selectedEraId", EraManager.Instance.eras[3].id);
+                    PlayerPrefs.SetString("selectedEraId", EraManager.Instance.eras[0].id);
                     PlayerPrefs.Save();
-                    selectedEraId = EraManager.Instance.eras[3].id;
+                    selectedEraId = EraManager.Instance.eras[0].id;
                 }
 
                 GenerateEraMenu(EraManager.Instance.eras);
@@ -115,6 +115,11 @@ public class HomeController : MonoBehaviour
                 }
             });
 
+        }
+        
+        if (scrollSnap != null)
+        {
+            scrollSnap.Initialize();
         }
     }
     void GenerateCostumeMenu(List<CostumeModel> costumes) // Call every time select era
