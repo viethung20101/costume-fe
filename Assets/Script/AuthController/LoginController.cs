@@ -15,7 +15,7 @@ public class LoginController : MonoBehaviour
 
     void Start()
     {
-        
+
         loginButton.onClick.AddListener(OnLoginClicked);
         emailErrorText.text = "";
         passwordErrorText.text = "";
@@ -55,7 +55,7 @@ public class LoginController : MonoBehaviour
                     (profile) =>
                     {
                         LoadingUI.Instance.Hide();
-                        SceneManager.LoadScene("Menu_1");
+                        SceneManager.LoadScene("Home");
                     },
                     (error) =>
                     {

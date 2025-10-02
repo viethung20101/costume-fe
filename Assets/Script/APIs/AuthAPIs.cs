@@ -32,8 +32,8 @@ public class AuthAPIs
             string result = www.downloadHandler.text;
             var json = JsonConvert.DeserializeObject<dynamic>(result);
 
-            string accessToken = json["data"]["accessToken"];
-            string refreshToken = json["data"]["refreshToken"];
+            string accessToken = json.data.accessToken;
+            string refreshToken = json.data.refreshToken;
 
             Debug.Log("Access Token: " + accessToken);
             Debug.Log("Refresh Token: " + refreshToken);
@@ -113,15 +113,20 @@ public class LoginDataResponse
 [System.Serializable]
 public class ProfileResponse
 {
-    public ProfileData data;
+    public UserProfile data;
     public int statusCode;
 }
 
 [System.Serializable]
-public class ProfileData
+public class UserProfile
 {
     public string id;
     public string email;
     public string name;
+    public string phone;
+    public string avatar;
     public string role;
+    public string status;
+    public string lastLoginAt;
+    public string emailVerified;
 }
