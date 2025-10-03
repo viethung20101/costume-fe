@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
+using System.Linq;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
     public class GCSR_DoCommandsExample : MonoBehaviour
     {
+		[TextAreaAttribute(8,100)]
+		public string[] language_VN_EN;
         private GCSpeechRecognition _speechRecognition;
 
         private Image _speechRecognitionState;
@@ -15,7 +18,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         private InputField _commandsInputField;
         private Text _resultText;
         private Dropdown _languageDropdown;
-
+        public Dropdown  _microphoneDevicesDropdown;
         public RectTransform _objectForCommand;
 
         private void Start()
@@ -38,10 +41,10 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
             _languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
             _objectForCommand = transform.Find("Canvas/Panel_PointArena/Image_Point").GetComponent<RectTransform>();
-
+           _microphoneDevicesDropdown = transform.Find("Canvas/Dropdown_MicrophoneDevices").GetComponent<Dropdown>();
             _startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
             _stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
-
+            _microphoneDevicesDropdown.onValueChanged.AddListener(MicrophoneDevicesDropdownOnValueChangedEventHandler);
             _startRecordButton.interactable = true;
             _stopRecordButton.interactable = false;
             _speechRecognitionState.color = Color.yellow;
@@ -82,7 +85,22 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
             _speechRecognition.StartRecord(false);
         }
+       private void RefreshMicsButtonOnClickHandler()
+		{
+			_speechRecognition.RequestMicrophonePermission(null);
 
+			_microphoneDevicesDropdown.ClearOptions();
+			_microphoneDevicesDropdown.AddOptions(_speechRecognition.GetMicrophoneDevices().ToList());
+
+			MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
+        }
+
+		private void MicrophoneDevicesDropdownOnValueChangedEventHandler(int value)
+		{
+			if (!_speechRecognition.HasConnectedMicrophoneDevices())
+				return;
+			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[value]);
+		}
         private void StopRecordButtonOnClickHandler()
         {
             _stopRecordButton.interactable = false;
@@ -139,7 +157,20 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         {
             _resultText.text = "Recognize Failed: " + error;
         }
-
+        public void On_EN()
+		{
+			_commandsInputField.text = language_VN_EN[1];
+			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
+		}
+		public void On_VN()
+		{
+		
+			_commandsInputField.text = language_VN_EN[0];
+			 _languageDropdown.value = _languageDropdown.options.IndexOf(
+                _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
+				
+			
+		}
         private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
         {
             _resultText.text = "Detected: ";
@@ -185,8 +216,8 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         { "chạy lên", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
         { "move up", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
 
-        { "move down", () => _objectForCommand.anchoredPosition += Vector2.down * speed },
-        { "move left", () => _objectForCommand.anchoredPosition += Vector2.left * speed },
+        { "down", () => _objectForCommand.anchoredPosition += Vector2.down * speed },
+        { " left", () => _objectForCommand.anchoredPosition += Vector2.left * speed },
         { "move right", () => _objectForCommand.anchoredPosition += Vector2.right * speed },
 
         { "scale up", () => _objectForCommand.localScale += Vector3.one * scaleSpeed },
