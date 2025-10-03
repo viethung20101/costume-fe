@@ -2,224 +2,210 @@
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Tools;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Text;
+using System.Collections.Generic;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
-	public class GCSR_DoCommandsExample : MonoBehaviour
-	{
-		private GCSpeechRecognition _speechRecognition;
+    public class GCSR_DoCommandsExample : MonoBehaviour
+    {
+        private GCSpeechRecognition _speechRecognition;
 
-		private Image _speechRecognitionState;
+        private Image _speechRecognitionState;
+        private Button _startRecordButton, _stopRecordButton;
+        private InputField _commandsInputField;
+        private Text _resultText;
+        private Dropdown _languageDropdown;
 
-		private Button _startRecordButton,
-					   _stopRecordButton;
+        public RectTransform _objectForCommand;
 
-		private InputField _commandsInputField;
+        private void Start()
+        {
+            _speechRecognition = GCSpeechRecognition.Instance;
 
-		private Text _resultText;
+            // event handlers
+            _speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
+            _speechRecognition.RecognizeFailedEvent += RecognizeFailedEventHandler;
+            _speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
+            _speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
+            _speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
+            _speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-		private Dropdown _languageDropdown;
+            // UI setup
+            _startRecordButton = transform.Find("Canvas/Button_StartRecord").GetComponent<Button>();
+            _stopRecordButton = transform.Find("Canvas/Button_StopRecord").GetComponent<Button>();
+            _speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
+            _resultText = transform.Find("Canvas/Text_Result").GetComponent<Text>();
+            _commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
+            _languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
+            _objectForCommand = transform.Find("Canvas/Panel_PointArena/Image_Point").GetComponent<RectTransform>();
 
-		private RectTransform _objectForCommand;
+            _startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
+            _stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
 
-		private void Start()
-		{
-			_speechRecognition = GCSpeechRecognition.Instance;
-			_speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
-			_speechRecognition.RecognizeFailedEvent += RecognizeFailedEventHandler;
+            _startRecordButton.interactable = true;
+            _stopRecordButton.interactable = false;
+            _speechRecognitionState.color = Color.yellow;
 
-			_speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
-			_speechRecognition.StartedRecordEvent += StartedRecordEventHandler;
-			_speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
+            _languageDropdown.ClearOptions();
+            _speechRecognition.RequestMicrophonePermission(null);
 
-			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
+            // load languages
+            for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
+            {
+                _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
+            }
+            _languageDropdown.value = _languageDropdown.options.IndexOf(
+                _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
 
-			_startRecordButton = transform.Find("Canvas/Button_StartRecord").GetComponent<Button>();
-			_stopRecordButton = transform.Find("Canvas/Button_StopRecord").GetComponent<Button>();
+            // select first mic
+            if (_speechRecognition.HasConnectedMicrophoneDevices())
+            {
+                _speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[0]);
+            }
+        }
 
-			_speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
+        private void OnDestroy()
+        {
+            _speechRecognition.RecognizeSuccessEvent -= RecognizeSuccessEventHandler;
+            _speechRecognition.RecognizeFailedEvent -= RecognizeFailedEventHandler;
+            _speechRecognition.FinishedRecordEvent -= FinishedRecordEventHandler;
+            _speechRecognition.StartedRecordEvent -= StartedRecordEventHandler;
+            _speechRecognition.RecordFailedEvent -= RecordFailedEventHandler;
+            _speechRecognition.EndTalkigEvent -= EndTalkigEventHandler;
+        }
 
-			_resultText = transform.Find("Canvas/Text_Result").GetComponent<Text>();
+        private void StartRecordButtonOnClickHandler()
+        {
+            _startRecordButton.interactable = false;
+            _stopRecordButton.interactable = true;
+            _resultText.text = string.Empty;
 
-			_commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
+            _speechRecognition.StartRecord(false);
+        }
 
-			_languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
+        private void StopRecordButtonOnClickHandler()
+        {
+            _stopRecordButton.interactable = false;
+            _startRecordButton.interactable = true;
+            _speechRecognition.StopRecord();
+        }
 
-			_objectForCommand = transform.Find("Canvas/Panel_PointArena/Image_Point").GetComponent<RectTransform>();
+        private void StartedRecordEventHandler()
+        {
+            _speechRecognitionState.color = Color.red;
+        }
 
-			_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
-			_stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
+        private void RecordFailedEventHandler()
+        {
+            _speechRecognitionState.color = Color.yellow;
+            _resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
 
-			_startRecordButton.interactable = true;
-			_stopRecordButton.interactable = false;
-			_speechRecognitionState.color = Color.yellow;
+            _stopRecordButton.interactable = false;
+            _startRecordButton.interactable = true;
+        }
 
-			_languageDropdown.ClearOptions();
+        private void EndTalkigEventHandler(AudioClip clip, float[] raw)
+        {
+            FinishedRecordEventHandler(clip, raw);
+        }
 
-			_speechRecognition.RequestMicrophonePermission(null);
+        private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
+        {
+            if (_startRecordButton.interactable)
+            {
+                _speechRecognitionState.color = Color.yellow;
+            }
 
-			for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
-			{
-				_languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
-			}
+            if (clip == null)
+                return;
 
-			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
+            RecognitionConfig config = RecognitionConfig.GetDefault();
+            config.languageCode = ((Enumerators.LanguageCode)_languageDropdown.value).Parse();
+            config.audioChannelCount = clip.channels;
 
+            GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
+            {
+                audio = new RecognitionAudioContent()
+                {
+                    content = raw.ToBase64()
+                },
+                config = config
+            };
 
-			// select first microphone device
-			if (_speechRecognition.HasConnectedMicrophoneDevices())
-			{
-				_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[0]);
-			}
-		}
+            _speechRecognition.Recognize(recognitionRequest);
+        }
 
-		private void OnDestroy()
-		{
-			_speechRecognition.RecognizeSuccessEvent -= RecognizeSuccessEventHandler;
-			_speechRecognition.RecognizeFailedEvent -= RecognizeFailedEventHandler;
+        private void RecognizeFailedEventHandler(string error)
+        {
+            _resultText.text = "Recognize Failed: " + error;
+        }
 
-			_speechRecognition.FinishedRecordEvent -= FinishedRecordEventHandler;
-			_speechRecognition.StartedRecordEvent -= StartedRecordEventHandler;
-			_speechRecognition.RecordFailedEvent -= RecordFailedEventHandler;
+        private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
+        {
+            _resultText.text = "Detected: ";
 
-			_speechRecognition.EndTalkigEvent -= EndTalkigEventHandler;
-		}
+            string[] commands = _commandsInputField.text.Split(',');
 
-		private void StartRecordButtonOnClickHandler()
-		{
-			_startRecordButton.interactable = false;
-			_stopRecordButton.interactable = true;
-			_resultText.text = string.Empty;
+            foreach (var result in recognitionResponse.results)
+            {
+                foreach (var alternative in result.alternatives)
+                {
+                    string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
+                    cleanTranscript = cleanTranscript.Replace(".", "").Replace(",", "").Replace("!", "");
 
-			_speechRecognition.StartRecord(false);
-		}
+                    _resultText.text += "\nIncome text: " + cleanTranscript;
 
-		private void StopRecordButtonOnClickHandler()
-		{
-			_stopRecordButton.interactable = false;
-			_startRecordButton.interactable = true;
+                    foreach (var command in commands)
+                    {
+                        string cleanCommand = command.Trim().ToLowerInvariant();
 
-			_speechRecognition.StopRecord();
-		}
+                        if (cleanTranscript.Contains(cleanCommand))
+                        {
+                            _resultText.text += "\nDid command: " + command + ";"; 
+                            DoCommand(cleanCommand);
+                        }
+                    }
+                }
+            }
+        }
 
-		private void StartedRecordEventHandler()
-		{
-			_speechRecognitionState.color = Color.red;
-		}
+       private void DoCommand(string command)
+{
+    float speed = 100f;
+    float scaleSpeed = 0.1f;
 
-		private void RecordFailedEventHandler()
-		{
-			_speechRecognitionState.color = Color.yellow;
-			_resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
+    // Chuẩn hóa: bỏ khoảng trắng, chuyển về thường, normalize Unicode
+    command = command.Trim().ToLowerInvariant();
+    command = command.Normalize(NormalizationForm.FormC); 
 
-			_stopRecordButton.interactable = false;
-			_startRecordButton.interactable = true;
-		}
+    Debug.Log("DO COMMAND với text: [" + command + "]");
 
-		private void EndTalkigEventHandler(AudioClip clip, float[] raw)
-		{
-			FinishedRecordEventHandler(clip, raw);
-		}
+      Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>()
+    {
+        { "chạy lên", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
+        { "move up", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
 
-		private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
-		{
-			if (_startRecordButton.interactable)
-			{
-				_speechRecognitionState.color = Color.yellow;
-			}
+        { "move down", () => _objectForCommand.anchoredPosition += Vector2.down * speed },
+        { "move left", () => _objectForCommand.anchoredPosition += Vector2.left * speed },
+        { "move right", () => _objectForCommand.anchoredPosition += Vector2.right * speed },
 
-			if (clip == null)
-				return;
+        { "scale up", () => _objectForCommand.localScale += Vector3.one * scaleSpeed },
+        { "scale down", () => _objectForCommand.localScale -= Vector3.one * scaleSpeed },
 
-			RecognitionConfig config = RecognitionConfig.GetDefault();
-			config.languageCode = ((Enumerators.LanguageCode)_languageDropdown.value).Parse();
-			config.audioChannelCount = clip.channels;
-			// configure other parameters of the config if need
+        { "rotate left", () => _objectForCommand.Rotate(0, 0, 30) },
+        { "rotate right", () => _objectForCommand.Rotate(0, 0, -30) },
+    };
 
-			GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
-			{
-				audio = new RecognitionAudioContent()
-				{
-					content = raw.ToBase64()
-				},
-				//audio = new RecognitionAudioUri() // for Google Cloud Storage object
-				//{
-				//	uri = "gs://bucketName/object_name"
-				//},
-				config = config
-			};
+    if (commandMap.ContainsKey(command))
+    {
+        commandMap[command].Invoke();
+        Debug.Log("✅ Executed command: " + command);
+    }
+    else
+    {
+        Debug.Log("❌ NOT FOUND COMMAND: " + command + " (len=" + command.Length + ")");
+    }
+}
 
-			_speechRecognition.Recognize(recognitionRequest);
-		}
-
-		private void RecognizeFailedEventHandler(string error)
-		{
-			_resultText.text = "Recognize Failed: " + error;
-		}
-
-		private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
-		{
-			_resultText.text = "Detected: ";
-
-			string[] commands = _commandsInputField.text.Split(',');
-
-			foreach (var result in recognitionResponse.results)
-			{
-				foreach (var alternative in result.alternatives)
-				{
-					_resultText.text += "\nIncome text: " + alternative.transcript;
-
-					foreach (var command in commands)
-					{
-						if (command.Trim(' ').ToLowerInvariant() == alternative.transcript.Trim(' ').ToLowerInvariant())
-						{
-							_resultText.text += "\nDid command: " + command + ";"; // debug result command
-
-							DoCommand(command.ToLowerInvariant().TrimEnd(' ').TrimStart(' '));
-						}
-					}
-				}
-			}
-		}
-
-		private void DoCommand(string command)
-		{
-			float speed = 10;
-			float scaleSpeed = 0.1f;
-
-			switch (command)
-			{
-				case "move up":
-					_objectForCommand.anchoredPosition += Vector2.up * speed;
-					break;
-				case "move down":
-					_objectForCommand.anchoredPosition += Vector2.down * speed;
-					break;
-				case "move left":
-					_objectForCommand.anchoredPosition += Vector2.left * speed;
-					break;
-				case "move right":
-					_objectForCommand.anchoredPosition += Vector2.right * speed;
-					break;
-				case "scale up":
-					_objectForCommand.localScale += Vector3.one * scaleSpeed;
-					break;
-				case "scale down":
-					_objectForCommand.localScale -= Vector3.one * scaleSpeed;
-					break;
-				case "rotate left":
-					_objectForCommand.Rotate(0, 0, 30);
-					break;
-				case "rotate right":
-					_objectForCommand.Rotate(0, 0, -30);
-					break;
-				case "chạy lên":
-					_objectForCommand.anchoredPosition += Vector2.up * speed;
-					break;
-				default:
-					Debug.Log("NOT FOUND COMAND IN LIST OF HANDLERS");
-					break;
-			}
-		}
-	}
+    }
 }
