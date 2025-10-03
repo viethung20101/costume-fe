@@ -51,6 +51,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
             _languageDropdown.ClearOptions();
             _speechRecognition.RequestMicrophonePermission(null);
+			   RefreshMicsButtonOnClickHandler();
 
             // load languages
             for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
