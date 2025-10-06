@@ -3,11 +3,14 @@ using TMPro;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine.UI;
+using System.Linq;
+using System;
+using System.Collections;
+
 public class HomeController : MonoBehaviour
 {
     [Header("Information User")]
     public TMP_Text TitleText;
-    private UserProfile userProfile;
 
     [Header("Vertical Scroll")]
     public Transform EraContent;
@@ -18,13 +21,13 @@ public class HomeController : MonoBehaviour
     public GameObject CostumeItemPrefab;
 
     private string selectedEraId;
+    private string selectedCostumeId;
 
     void Awake()
     {
-        CheckAuthentication();
-        LoadUserProfile();
         GetAllErasActive();
     }
+
     void CheckAuthentication()
     {
         string accessToken = PlayerPrefs.GetString("accessToken", "");
@@ -36,18 +39,9 @@ public class HomeController : MonoBehaviour
         }
     }
 
-    void LoadUserProfile()
+    void LoadTitleCostume(string title)
     {
-        string userProfileJson = PlayerPrefs.GetString("userProfile", "");
-        if (!string.IsNullOrEmpty(userProfileJson))
-        {
-            userProfile = JsonUtility.FromJson<UserProfile>(userProfileJson);
-            TitleText.text = "Welcome, " + userProfile.name + "!";
-        }
-        else
-        {
-            Debug.LogWarning("No user profile found in PlayerPrefs.");
-        }
+        TitleText.text = title;
     }
 
     /////////////////////////////////////////////////////////////
@@ -58,16 +52,7 @@ public class HomeController : MonoBehaviour
         StartCoroutine(new EraAPIs().GetAllErasRequest(
             (result) =>
             {
-
-                if (EraManager.Instance.eras.Count > 0)
-                {
-                    PlayerPrefs.SetString("selectedEraId", EraManager.Instance.eras[0].id);
-                    PlayerPrefs.Save();
-                    selectedEraId = EraManager.Instance.eras[0].id;
-                }
-
                 GenerateEraMenu(EraManager.Instance.eras);
-                GetCostumesByEraId(selectedEraId);
             },
             (error) =>
             {
@@ -75,8 +60,10 @@ public class HomeController : MonoBehaviour
             }
         ));
     }
+
     void GetCostumesByEraId(string eraId)
     {
+
         StartCoroutine(new CostumeAPIs().GetCostumesByEraIdRequest(eraId,
            (result) =>
            {
@@ -96,68 +83,98 @@ public class HomeController : MonoBehaviour
     #region Generate Menu
     void GenerateEraMenu(List<EraModel> eras) // Only call one
     {
-        // Re-initialize ScrollSnapEffect
-        ScrollSnapEffectHorizontal scrollSnap = FindFirstObjectByType<ScrollSnapEffectHorizontal>();
-        foreach (var era in eras)
+        ScrollSnapVertical scrollSnap = FindFirstObjectByType<ScrollSnapVertical>();
+        foreach (Transform child in EraContent) DestroyImmediate(child.gameObject);
+
+        foreach (var (era, index) in eras.Select((value, i) => (value, i)))
         {
+            int capturedIndex = index;
             GameObject eraItem = Instantiate(EraItemPrefab, EraContent);
             eraItem.GetComponentInChildren<TMP_Text>().text = era.name;
             eraItem.GetComponent<Button>().onClick.AddListener(() =>
             {
-                PlayerPrefs.SetString("selectedEraId", era.id);
-                PlayerPrefs.Save();
-                selectedEraId = era.id;
-                GetCostumesByEraId(selectedEraId);
-                if (scrollSnap != null)
-                {
-                    RectTransform itemRect = eraItem.GetComponent<RectTransform>();
-                    scrollSnap.SnapToItem(itemRect);
-                }
+                scrollSnap.SetItemSelected(capturedIndex);
             });
-
         }
-        
+
         if (scrollSnap != null)
         {
-            scrollSnap.Initialize();
+            StartCoroutine(SnapAfterBuild(scrollSnap, eras));
         }
     }
-    void GenerateCostumeMenu(List<CostumeModel> costumes) // Call every time select era
+
+    void GenerateCostumeMenu(List<CostumeModel> costumes)
     {
-        // Re-initialize ScrollSnapEffect
-        ScrollSnapEffect scrollSnap = FindFirstObjectByType<ScrollSnapEffect>();
 
         foreach (Transform child in CostumeContent)
         {
             Destroy(child.gameObject);
         }
-        foreach (var costume in costumes)
+
+        ScrollSnapEffectHorizontal scrollSnap = FindFirstObjectByType<ScrollSnapEffectHorizontal>();
+
+        foreach (var (costume, index) in costumes.Select((value, i) => (value, i)))
         {
+            int capturedIndex = index;
             GameObject costumeItem = Instantiate(CostumeItemPrefab, CostumeContent);
+
             costumeItem.GetComponentInChildren<TMP_Text>().text = costume.name;
             costumeItem.GetComponent<Button>().onClick.AddListener(() =>
             {
-                PlayerPrefs.SetString("selectedCostumeId", costume.id);
-                PlayerPrefs.Save();
-                // Snap to the selected item
-                if (scrollSnap != null)
-                {
-                    RectTransform itemRect = costumeItem.GetComponent<RectTransform>();
-                    scrollSnap.SnapToItem(itemRect);
-                }
+                scrollSnap.SetItemSelected(capturedIndex);
             });
-
         }
-
-
 
         if (scrollSnap != null)
         {
-            scrollSnap.Initialize();
+            StartCoroutine(SnapAfterBuild1(scrollSnap, costumes));
         }
-
-
     }
+
+    /// <summary>
+    /// Đợi 1 frame + rebuild layout → sau đó snap
+    /// </summary>
+    private IEnumerator SnapAfterBuild(ScrollSnapVertical scrollSnap, List<EraModel> eras)
+    {
+        // Đợi vài frame để Unity build layout xong
+        yield return null;
+        yield return new WaitForEndOfFrame();
+        int midIndex = eras.Count > 0 ? Mathf.RoundToInt((eras.Count - 1) / 2f) : -1;
+        scrollSnap.Initialize();
+        scrollSnap.OnItemSelected = (index, item) =>
+        {
+            PlayerPrefs.SetString("selectedEraId", eras[index].id);
+            PlayerPrefs.Save();
+            selectedEraId = eras[index].id;
+            GetCostumesByEraId(selectedEraId);
+        };
+        // đảm bảo content vẫn tồn tại (sau khi Destroy/Instantiate)
+        if (scrollSnap != null && scrollSnap.content != null)
+        {
+            scrollSnap.SetItemSelected(midIndex);
+        }
+    }
+
+    private IEnumerator SnapAfterBuild1(ScrollSnapEffectHorizontal scrollSnap, List<CostumeModel> costumes)
+    {
+        yield return null;
+        yield return new WaitForEndOfFrame();
+        int midIndex = costumes.Count > 0 ? Mathf.RoundToInt((costumes.Count - 1) / 2f) : -1;
+
+        scrollSnap.ForceRebuild();
+        scrollSnap.OnItemSelected = (index, item) =>
+        {
+            LoadTitleCostume(costumes[index].shortDescription);
+            Debug.Log("Selected Costume: " + costumes[index].name);
+            // PlayerPrefs.SetString("selectedCostumeId", costumes[index].id);
+            // PlayerPrefs.Save();
+            // selectedCostumeId = costumes[index].id;
+        };
+        if (scrollSnap != null && scrollSnap.content != null)
+        {
+            scrollSnap.SetItemSelected(midIndex);
+        }
+    }
+
     #endregion
 }
-

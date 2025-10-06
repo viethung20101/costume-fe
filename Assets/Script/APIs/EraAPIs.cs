@@ -13,16 +13,8 @@ public class EraAPIs
     public IEnumerator GetAllErasRequest(Action<string> onSuccess, Action<string> onError)
     {
         string url = baseUrl + "/eras/active";
-        string accessToken = PlayerPrefs.GetString("accessToken", "");
-
-        if (string.IsNullOrEmpty(accessToken))
-        {
-            onError?.Invoke("Chưa có token, hãy login trước.");
-            yield break;
-        }
 
         UnityWebRequest www = UnityWebRequest.Get(url);
-        www.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
         yield return www.SendWebRequest();
 

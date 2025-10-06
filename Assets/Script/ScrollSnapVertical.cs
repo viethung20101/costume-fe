@@ -5,18 +5,18 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
-/// ScrollSnapEffectHorizontal
-/// - Hiển thị list item ngang
+/// ScrollSnapVertical
+/// - Hiển thị list item dọc
 /// - Item ở trung tâm sẽ được chọn (scale lớn hơn, alpha rõ hơn)
 /// - Các item càng xa center càng nhỏ và mờ dần
 /// - Cho phép drag để chọn item
 /// - Cho phép chọn item bằng hàm SetItemSelected(index)
 /// </summary>
-public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
+public class ScrollSnapVertical : MonoBehaviour, IEndDragHandler
 {
     [Header("References")]
     public ScrollRect scrollRect;
-    public Transform content;
+    public RectTransform content;
 
     [Header("Effect Settings")]
     public float scaleOffset = 0.5f;         // Item ở center sẽ to hơn
@@ -34,28 +34,9 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
     private bool isSnapping = false;
     private int currentIndex = -1;
 
-
-    public void ForceRebuild()
+    void Start()
     {
-        items.Clear();
-
-        foreach (Transform child in content)
-        {
-            if (child != null && child.gameObject != null)
-            {
-                if (child is RectTransform rt)
-                    items.Add(rt);
-            }
-        }
-        Debug.Log("Items count after rebuild: " + items.Count);
-
-        currentIndex = -1;
-        isSnapping = false;
-        velocity = Vector2.zero;
-
-        // Ép Unity cập nhật layout ngay
-        Canvas.ForceUpdateCanvases();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+        Initialize();
     }
 
     /// <summary>
@@ -73,7 +54,6 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
         currentIndex = -1;
         isSnapping = false;
         velocity = Vector2.zero;
-        targetAnchoredPos = Vector2.zero;
     }
 
     void Update()
@@ -83,17 +63,17 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
     }
 
     /// <summary>
-    /// Scale + Alpha của item theo khoảng cách tới center (trục X)
+    /// Scale + Alpha của item theo khoảng cách tới center
     /// </summary>
     private void UpdateItemEffects()
     {
         foreach (var item in items)
         {
-            if (item == null || !item.gameObject) continue;
+            if (item == null) continue;
 
             // vị trí item trong local space của viewport
             Vector3 itemLocal = scrollRect.viewport.InverseTransformPoint(item.position);
-            float distance = Mathf.Abs(itemLocal.x);
+            float distance = Mathf.Abs(itemLocal.y);
 
             // scale
             float scale = 1f + scaleOffset * (1f - Mathf.Clamp01(distance / 300f));
@@ -112,17 +92,17 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
     {
         if (!isSnapping) return;
 
-        content.GetComponent<RectTransform>().anchoredPosition = Vector2.SmoothDamp(
-            content.GetComponent<RectTransform>().anchoredPosition,
+        content.anchoredPosition = Vector2.SmoothDamp(
+            content.anchoredPosition,
             targetAnchoredPos,
             ref velocity,
             snapSmoothTime
         );
 
-        bool reachedTarget = (content.GetComponent<RectTransform>().anchoredPosition - targetAnchoredPos).sqrMagnitude <= snapThreshold * snapThreshold;
+        bool reachedTarget = (content.anchoredPosition - targetAnchoredPos).sqrMagnitude <= snapThreshold * snapThreshold;
         if (reachedTarget || velocity.sqrMagnitude < 0.01f)
         {
-            content.GetComponent<RectTransform>().anchoredPosition = targetAnchoredPos;
+            content.anchoredPosition = targetAnchoredPos;
             isSnapping = false;
             velocity = Vector2.zero;
 
@@ -136,6 +116,7 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         SnapToClosestItem();
+        SelectClosestItem();
     }
 
     private void SnapToClosestItem()
@@ -144,9 +125,9 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
         if (closest == null) return;
 
         Vector3 itemLocal = scrollRect.viewport.InverseTransformPoint(closest.position);
-        float offset = -itemLocal.x;
+        float offset = -itemLocal.y;
 
-        targetAnchoredPos = content.GetComponent<RectTransform>().anchoredPosition + new Vector2(offset, 0);
+        targetAnchoredPos = content.anchoredPosition + new Vector2(0, offset);
         isSnapping = true;
     }
 
@@ -154,8 +135,6 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
     {
         RectTransform closest = GetClosestItem();
         int index = items.IndexOf(closest);
-        Debug.Log("Closest index: " + index);
-        Debug.Log("Closest item: " + items.Count);
 
         if (index != -1 && index != currentIndex)
         {
@@ -171,9 +150,8 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
 
         foreach (var item in items)
         {
-            if (item == null || !item.gameObject) continue;
             Vector3 itemLocal = scrollRect.viewport.InverseTransformPoint(item.position);
-            float distance = Mathf.Abs(itemLocal.x);
+            float distance = Mathf.Abs(itemLocal.y);
 
             if (distance < minDistance)
             {
@@ -192,12 +170,10 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
         if (index < 0 || index >= items.Count) return;
 
         RectTransform targetItem = items[index];
-        if (targetItem == null || !targetItem.gameObject) return;
-
         Vector3 itemLocal = scrollRect.viewport.InverseTransformPoint(targetItem.position);
-        float offset = -itemLocal.x;
+        float offset = -itemLocal.y;
 
-        targetAnchoredPos = content.GetComponent<RectTransform>().anchoredPosition + new Vector2(offset, 0);
+        targetAnchoredPos = content.anchoredPosition + new Vector2(0, offset);
         isSnapping = true;
 
         // Gọi callback ngay lập tức

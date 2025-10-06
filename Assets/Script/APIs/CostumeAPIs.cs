@@ -11,17 +11,8 @@ public class CostumeAPIs
     public IEnumerator GetCostumesByEraIdRequest(string eraId, Action<string> onSuccess, Action<string> onError)
     {
         string url = baseUrl + "/costumes/era/" + eraId;
-        string accessToken = PlayerPrefs.GetString("accessToken", "");
-
-        if (string.IsNullOrEmpty(accessToken))
-        {
-            onError?.Invoke("Chưa có token, hãy login trước.");
-            yield break;
-        }
-
+      
         UnityWebRequest www = UnityWebRequest.Get(url);
-        www.SetRequestHeader("Authorization", "Bearer " + accessToken);
-
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)

@@ -10,15 +10,43 @@ public class LoginController : MonoBehaviour
     public Button loginButton;
     public TMP_Text emailErrorText;
     public TMP_Text passwordErrorText;
-
-
+    public GameObject loginPanel;
+    public GameObject userPanel;
+    public bool IsAuthenticated => _isAuthenticated; //Read-only property
+    private bool _isAuthenticated = false;
 
     void Start()
     {
-
+        CheckAuthentication();
         loginButton.onClick.AddListener(OnLoginClicked);
         emailErrorText.text = "";
         passwordErrorText.text = "";
+    }
+
+    void CheckAuthentication()
+    {
+        string accessToken = PlayerPrefs.GetString("accessToken", "");
+        string userProfile = PlayerPrefs.GetString("userProfile", "");
+        if (!string.IsNullOrEmpty(accessToken) && !string.IsNullOrEmpty(userProfile))
+        {
+            _isAuthenticated = true;
+        }
+        else
+        {
+            _isAuthenticated = false;
+        }
+
+        loginPanel.SetActive(!_isAuthenticated);
+        userPanel.SetActive(_isAuthenticated);
+
+    }
+
+    public void Logout()
+    {
+        PlayerPrefs.DeleteKey("accessToken");
+        PlayerPrefs.DeleteKey("refreshToken");
+        PlayerPrefs.DeleteKey("userProfile");
+        CheckAuthentication();
     }
 
     void OnLoginClicked()
@@ -55,7 +83,10 @@ public class LoginController : MonoBehaviour
                     (profile) =>
                     {
                         LoadingUI.Instance.Hide();
-                        SceneManager.LoadScene("Home");
+                        _isAuthenticated = true;
+                        loginPanel.SetActive(false);
+                        userPanel.SetActive(true);
+
                     },
                     (error) =>
                     {

@@ -35,8 +35,6 @@ public class AuthAPIs
             string accessToken = json.data.accessToken;
             string refreshToken = json.data.refreshToken;
 
-            Debug.Log("Access Token: " + accessToken);
-            Debug.Log("Refresh Token: " + refreshToken);
             // Lưu Token và Refresh Token vào PlayerPrefs
             PlayerPrefs.SetString("accessToken", accessToken);
             PlayerPrefs.SetString("refreshToken", refreshToken);
