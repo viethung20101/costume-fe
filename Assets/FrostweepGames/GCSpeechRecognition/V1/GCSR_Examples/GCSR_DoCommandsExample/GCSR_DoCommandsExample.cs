@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
+using UnityEngine.EventSystems;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
     public class GCSR_DoCommandsExample : MonoBehaviour
@@ -14,13 +16,14 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         private GCSpeechRecognition _speechRecognition;
 
         private Image _speechRecognitionState;
-        private Button _startRecordButton, _stopRecordButton;
+        public Button _startRecordButton;
         private InputField _commandsInputField;
         private Text _resultText;
         private Dropdown _languageDropdown;
         public Dropdown  _microphoneDevicesDropdown;
-        public RectTransform _objectForCommand;
-
+        public AudioSource audioSource;
+        public AudioClip Ban_Da_Co;
+        public Image _voiceLevelImage;
         private void Start()
         {
             _speechRecognition = GCSpeechRecognition.Instance;
@@ -34,19 +37,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
             // UI setup
-            _startRecordButton = transform.Find("Canvas/Button_StartRecord").GetComponent<Button>();
-            _stopRecordButton = transform.Find("Canvas/Button_StopRecord").GetComponent<Button>();
             _speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
             _resultText = transform.Find("Canvas/Text_Result").GetComponent<Text>();
             _commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
             _languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
-            _objectForCommand = transform.Find("Canvas/Panel_PointArena/Image_Point").GetComponent<RectTransform>();
            _microphoneDevicesDropdown = transform.Find("Canvas/Dropdown_MicrophoneDevices").GetComponent<Dropdown>();
-            _startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
-            _stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
             _microphoneDevicesDropdown.onValueChanged.AddListener(MicrophoneDevicesDropdownOnValueChangedEventHandler);
             _startRecordButton.interactable = true;
-            _stopRecordButton.interactable = false;
             _speechRecognitionState.color = Color.yellow;
 
             _languageDropdown.ClearOptions();
@@ -78,12 +75,17 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.EndTalkigEvent -= EndTalkigEventHandler;
         }
 
-        private void StartRecordButtonOnClickHandler()
+        public void StartRecordButtonOnClickHandler(BaseEventData data)
         {
-            _startRecordButton.interactable = false;
-            _stopRecordButton.interactable = true;
+          
+          StartCoroutine(TemporaryStart());
+            
+        }
+        IEnumerator TemporaryStart()
+        {
+            yield return new WaitForSeconds(0.13f);
+             _startRecordButton.interactable = false;
             _resultText.text = string.Empty;
-
             _speechRecognition.StartRecord(false);
         }
        private void RefreshMicsButtonOnClickHandler()
@@ -95,17 +97,46 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
 			MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
         }
+        private void Update()
+        {
+            if(_speechRecognition.IsRecording)
+			{
+				if (_speechRecognition.GetMaxFrame() > 0)
+				{
+					float max = (float)_speechRecognition.configs[_speechRecognition.currentConfigIndex].voiceDetectionThreshold;
+					float current = _speechRecognition.GetLastFrame() / max;
 
+					if(current >= 1f)
+					{
+						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 1f), 30 * Time.deltaTime);
+					}
+					else
+					{
+						_voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 0.5f), 30 * Time.deltaTime);
+					}
+
+					_voiceLevelImage.color = current >= 1f ? Color.green : Color.red;
+				}
+			}
+			else
+			{
+				_voiceLevelImage.fillAmount = 0f;
+			}
+        }
 		private void MicrophoneDevicesDropdownOnValueChangedEventHandler(int value)
 		{
 			if (!_speechRecognition.HasConnectedMicrophoneDevices())
 				return;
 			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[value]);
 		}
-        private void StopRecordButtonOnClickHandler()
+        public void StopRecordButtonOnClickHandler(BaseEventData data)
         {
-            _stopRecordButton.interactable = false;
-            _startRecordButton.interactable = true;
+          StartCoroutine(TemporaryStop());
+        }
+           IEnumerator TemporaryStop()
+        {
+            yield return new WaitForSeconds(0.13f);
+               _startRecordButton.interactable = true;
             _speechRecognition.StopRecord();
         }
 
@@ -118,8 +149,6 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         {
             _speechRecognitionState.color = Color.yellow;
             _resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
-
-            _stopRecordButton.interactable = false;
             _startRecordButton.interactable = true;
         }
 
@@ -183,7 +212,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
                 foreach (var alternative in result.alternatives)
                 {
                     string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
-                    cleanTranscript = cleanTranscript.Replace(".", "").Replace(",", "").Replace("!", "");
+                    cleanTranscript = cleanTranscript.Replace(".", "").Replace(",", "").Replace("!", "").Replace("?", "");
 
                     _resultText.text += "\nIncome text: " + cleanTranscript;
 
@@ -193,7 +222,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
                         if (cleanTranscript.Contains(cleanCommand))
                         {
-                            _resultText.text += "\nDid command: " + command + ";"; 
+                            _resultText.text += "\nDid command: " + command; 
                             DoCommand(cleanCommand);
                         }
                     }
@@ -206,7 +235,6 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
     float speed = 100f;
     float scaleSpeed = 0.1f;
 
-    // Chuẩn hóa: bỏ khoảng trắng, chuyển về thường, normalize Unicode
     command = command.Trim().ToLowerInvariant();
     command = command.Normalize(NormalizationForm.FormC); 
 
@@ -214,18 +242,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
       Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>()
     {
-        { "chạy lên", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
-        { "move up", () => _objectForCommand.anchoredPosition += Vector2.up * speed },
-
-        { "down", () => _objectForCommand.anchoredPosition += Vector2.down * speed },
-        { " left", () => _objectForCommand.anchoredPosition += Vector2.left * speed },
-        { "move right", () => _objectForCommand.anchoredPosition += Vector2.right * speed },
-
-        { "scale up", () => _objectForCommand.localScale += Vector3.one * scaleSpeed },
-        { "scale down", () => _objectForCommand.localScale -= Vector3.one * scaleSpeed },
-
-        { "rotate left", () => _objectForCommand.Rotate(0, 0, 30) },
-        { "rotate right", () => _objectForCommand.Rotate(0, 0, -30) },
+      { language_VN_EN[0], () => {audioSource.clip = Ban_Da_Co; audioSource.Play();}},
     };
 
     if (commandMap.ContainsKey(command))
