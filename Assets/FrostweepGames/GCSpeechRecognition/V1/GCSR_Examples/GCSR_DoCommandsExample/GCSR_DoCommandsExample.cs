@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine.EventSystems;
+using System.Globalization;
+using System.Text.RegularExpressions;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
     public class GCSR_DoCommandsExample : MonoBehaviour
@@ -14,7 +16,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 		[TextAreaAttribute(8,100)]
 		public string[] language_VN_EN;
         private GCSpeechRecognition _speechRecognition;
-
+        public int Index;
         private Image _speechRecognitionState;
         public Button _startRecordButton;
         private InputField _commandsInputField;
@@ -24,8 +26,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         public AudioSource audioSource;
         public AudioClip Ban_Da_Co;
         public Image _voiceLevelImage;
+        public GameObject[] ButtonLanguage;
+        [SerializeField] TextDialogue textDialogue;
         private void Start()
         {
+           // _commandsInputField.text = language_VN_EN[1];
+               ButtonLanguage[0].SetActive(false);
+             ButtonLanguage[1].SetActive(true);
             _speechRecognition = GCSpeechRecognition.Instance;
 
             // event handlers
@@ -55,8 +62,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             {
                 _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
             }
-            _languageDropdown.value = _languageDropdown.options.IndexOf(
-                _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
+            _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
 
             // select first mic
             if (_speechRecognition.HasConnectedMicrophoneDevices())
@@ -133,7 +139,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         {
           StartCoroutine(TemporaryStop());
         }
-           IEnumerator TemporaryStop()
+        IEnumerator TemporaryStop()
         {
             yield return new WaitForSeconds(0.13f);
                _startRecordButton.interactable = true;
@@ -189,12 +195,15 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         }
         public void On_EN()
 		{
+            ButtonLanguage[0].SetActive(false);
+             ButtonLanguage[1].SetActive(true);
 			_commandsInputField.text = language_VN_EN[1];
 			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_GB.Parse()));
 		}
 		public void On_VN()
 		{
-		
+		      ButtonLanguage[1].SetActive(false);
+               ButtonLanguage[0].SetActive(true);
 			_commandsInputField.text = language_VN_EN[0];
 			 _languageDropdown.value = _languageDropdown.options.IndexOf(
                 _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
@@ -212,7 +221,8 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
                 foreach (var alternative in result.alternatives)
                 {
                     string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
-                    cleanTranscript = cleanTranscript.Replace(".", "").Replace(",", "").Replace("!", "").Replace("?", "");
+                    cleanTranscript = System.Text.RegularExpressions.Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
+
 
                     _resultText.text += "\nIncome text: " + cleanTranscript;
 
@@ -222,35 +232,73 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
                         if (cleanTranscript.Contains(cleanCommand))
                         {
-                            _resultText.text += "\nDid command: " + command; 
+                            _resultText.text += "\nDid command: " + command +","; 
                             DoCommand(cleanCommand);
                         }
                     }
                 }
             }
         }
-
-       private void DoCommand(string command)
+    private void DoCommand(string command)
 {
-    float speed = 100f;
-    float scaleSpeed = 0.1f;
-
     command = command.Trim().ToLowerInvariant();
-    command = command.Normalize(NormalizationForm.FormC); 
+    Debug.Log("💬 DO COMMAND với text: [" + command + "]");
 
-    Debug.Log("DO COMMAND với text: [" + command + "]");
+    // Tạo map lệnh động từ language_VN_EN
+    Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>();
 
-      Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>()
+    // Tách từng câu trong language_VN_EN[0] và language_VN_EN[1]
+    string[] vietnameseCommands = language_VN_EN[0].Split(',');
+    string[] englishCommands = language_VN_EN[1].Split(',');
+
+    // Đảm bảo cả hai mảng có cùng độ dài
+    int commandCount = Mathf.Min(vietnameseCommands.Length, englishCommands.Length);
+
+    for (int i = 0; i < commandCount; i++)
     {
-      { language_VN_EN[0], () => {audioSource.clip = Ban_Da_Co; audioSource.Play();}},
-    };
+        string vietnameseCmd = vietnameseCommands[i].Trim().ToLowerInvariant();
+        string englishCmd = englishCommands[i].Trim().ToLowerInvariant();
 
-    if (commandMap.ContainsKey(command))
-    {
-        commandMap[command].Invoke();
-        Debug.Log("✅ Executed command: " + command);
+        int currentIndex = i;
+
+        // Thêm cả phiên bản tiếng Việt và tiếng Anh
+        if (!commandMap.ContainsKey(vietnameseCmd))
+        {
+            commandMap.Add(vietnameseCmd, () =>
+            {
+                audioSource.clip = Ban_Da_Co;
+                audioSource.Play();
+                textDialogue.Update_Text(currentIndex);
+                Debug.Log("✅ Executed command for index: " + currentIndex);
+            });
+        }
+
+        if (!commandMap.ContainsKey(englishCmd))
+        {
+            commandMap.Add(englishCmd, () =>
+            {
+                audioSource.clip = Ban_Da_Co;
+                audioSource.Play();
+                textDialogue.Update_Text(currentIndex);
+                Debug.Log("✅ Executed command for index: " + currentIndex);
+            });
+        }
     }
-    else
+
+    // Tìm và chạy lệnh phù hợp
+    bool found = false;
+    foreach (var kvp in commandMap)
+    {
+        if (command.Contains(kvp.Key))
+        {
+            kvp.Value.Invoke();
+            Debug.Log("✅ Executed command (match): " + kvp.Key);
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
     {
         Debug.Log("❌ NOT FOUND COMMAND: " + command + " (len=" + command.Length + ")");
     }

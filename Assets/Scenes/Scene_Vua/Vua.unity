@@ -2117,8 +2117,8 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: Move Left, Move Right, Move Up, Move Down, Scale Up, Scale Down, rotate
-    left, rotate right
+  m_Text: "b\u1EA1n \u0111\xE3 c\xF3 ng\u01B0\u1EDDi y\xEAu ch\u01B0a, b\u1EA1n l\xE0
+    ai"
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -3989,7 +3989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -882, y: -17}
+  m_AnchoredPosition: {x: -882, y: -16}
   m_SizeDelta: {x: 735, y: 110}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &682693697
@@ -4800,8 +4800,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Move Left, Move Right, Move Up, Move Down, Scale Up, Scale Down, rotate
-    left, rotate right
+  m_Text: "b\u1EA1n \u0111\xE3 c\xF3 ng\u01B0\u1EDDi y\xEAu ch\u01B0a, b\u1EA1n l\xE0
+    ai"
 --- !u!222 &776860228
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5931,6 +5931,7 @@ GameObject:
   - component: {fileID: 1037125667}
   - component: {fileID: 1037125669}
   - component: {fileID: 1037125668}
+  - component: {fileID: 1037125670}
   m_Layer: 5
   m_Name: Image_BackGround
   m_TagString: Untagged
@@ -5996,6 +5997,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037125666}
   m_CullTransparentMesh: 1
+--- !u!114 &1037125670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037125666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4e4fe201d5936343b387391ea4700a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextDialogue
+  TextComponent: {fileID: 709943338}
+  Speed: 0.1
+  Lines:
+  - "t\xF4i l\xE0 vua"
+  - "T\xF4i l\xE0 Ti\u1EC1n L\u1EC7"
+  - "B\u1ED9 \u0111\u1ED3 n\xE0y l\xE0 sao "
+  - "t\xF4i l\xE0 ai "
+  Index: 0
 --- !u!1 &1044323057
 GameObject:
   m_ObjectHideFlags: 0
@@ -8223,7 +8244,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -667, y: 236}
+  m_AnchoredPosition: {x: -667, y: 75}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1515328520
@@ -10624,13 +10645,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   language_VN_EN:
-  - "b\u1EA1n \u0111\xE3 c\xF3 ng\u01B0\u1EDDi y\xEAu ch\u01B0a"
+  - "b\u1EA1n \u0111\xE3 c\xF3 ng\u01B0\u1EDDi y\xEAu ch\u01B0a  b\u1EA1n l\xE0 ai "
   - down, rotate left, left
+  Index: 0
   _startRecordButton: {fileID: 118184030}
   _microphoneDevicesDropdown: {fileID: 682693697}
   audioSource: {fileID: 2061454778}
   Ban_Da_Co: {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
   _voiceLevelImage: {fileID: 803759009}
+  ButtonLanguage:
+  - {fileID: 1515328518}
+  - {fileID: 1766265249}
+  textDialogue: {fileID: 1037125670}
 --- !u!81 &1899691099
 AudioListener:
   m_ObjectHideFlags: 0
