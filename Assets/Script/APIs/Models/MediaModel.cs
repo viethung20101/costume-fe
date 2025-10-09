@@ -1,6 +1,5 @@
-using UnityEngine;
-
-public class MediaModel : MonoBehaviour
+[System.Serializable]
+public class MediaModel
 {
     public string id;
     public string filename;

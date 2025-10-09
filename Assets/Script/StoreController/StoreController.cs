@@ -152,7 +152,9 @@ public class StoreController : MonoBehaviour
             productItem.GetComponent<ProductItemController>().Setup(product);
             productItem.GetComponent<Button>().onClick.AddListener(() =>
             {
-                PlayerPrefs.SetString("selectedProduct", JsonConvert.SerializeObject(product));
+                var json = JsonConvert.SerializeObject(product);
+                PlayerPrefs.SetString("selectedProduct", json);
+                PlayerPrefs.Save();
                 UnityEngine.SceneManagement.SceneManager.LoadScene("ProductDetail");
             });
         }
