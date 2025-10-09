@@ -4903,7 +4903,7 @@ MonoBehaviour:
         smr: {fileID: 5197118176821904847}
         blendIndex: 7
         minShape: 0
-        maxShape: 0.5
+        maxShape: 0.24
         eyeGizmo: {fileID: 0}
         eventSender: {fileID: 0}
         animator: {fileID: 0}
@@ -6410,7 +6410,7 @@ MonoBehaviour:
   inspStateFoldoutProcessing: 1
   inspStateFoldoutSettings: 1
   inspStateFoldoutVisemes: 1
-  inspCollectionDisplayMode: 1
+  inspCollectionDisplayMode: 0
   inspAnalysisDisplay: 0
   inspOverrideSecondaryMix: 0
   inspDetailedTimingAdjustments: 1
@@ -8982,10 +8982,10 @@ SkinnedMeshRenderer:
   - 0
   - 0
   - 0
-  - 100
-  - 100
-  - 100
-  - 100
+  - 0
+  - 0
+  - 0
+  - 24.2
   - 100
   - 0
   - 0
