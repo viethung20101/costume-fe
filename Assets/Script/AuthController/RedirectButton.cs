@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class RedirectButton : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class RedirectButton : MonoBehaviour
     public string sceneName;
     public bool loginRequired = false;
     public LoginController loginController;
+    public TMP_Text ErrorText;
     void Start()
     {
 
@@ -18,10 +20,12 @@ public class RedirectButton : MonoBehaviour
                 var isAuthenticated = loginController.IsAuthenticated;
                 if (!isAuthenticated)
                 {
+                    ErrorText.text = "Vui lòng đăng nhập để tiếp tục.";
                     Debug.Log("User not authenticated. Redirecting to Login scene.");
                     return;
                 }
             }
+            ErrorText.text = "";
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
         });
     }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using UnityEngine.UI;
 using System.Linq;
-using System;
 using System.Collections;
 
 public class HomeController : MonoBehaviour
@@ -23,22 +22,19 @@ public class HomeController : MonoBehaviour
     private string selectedEraId;
     private string selectedCostumeId;
 
-    void Awake()
+    private Coroutine currentCostumeRequest;
+    void Start()
     {
-        GetAllErasActive();
-    }
-
-    void CheckAuthentication()
-    {
-        string accessToken = PlayerPrefs.GetString("accessToken", "");
-        if (string.IsNullOrEmpty(accessToken))
+        if (EraManager.Instance.eras == null || EraManager.Instance.eras.Count == 0)
         {
-            Debug.LogWarning("No access token found, redirecting to Login scene.");
-            PlayerPrefs.DeleteAll();
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Auth");
+            GetAllErasActive();
+        }
+        else
+        {
+            GenerateEraMenu(EraManager.Instance.eras);
         }
     }
-
+    
     void LoadTitleCostume(string title)
     {
         TitleText.text = title;
@@ -52,7 +48,8 @@ public class HomeController : MonoBehaviour
         StartCoroutine(new EraAPIs().GetAllErasRequest(
             (result) =>
             {
-                GenerateEraMenu(EraManager.Instance.eras);
+                var json = JsonConvert.DeserializeObject<EraResponse>(result);
+                GenerateEraMenu(json.data);
             },
             (error) =>
             {
@@ -64,17 +61,27 @@ public class HomeController : MonoBehaviour
     void GetCostumesByEraId(string eraId)
     {
 
-        StartCoroutine(new CostumeAPIs().GetCostumesByEraIdRequest(eraId,
-           (result) =>
-           {
-               var json = JsonConvert.DeserializeObject<CostumeResponse>(result);
-               GenerateCostumeMenu(json.data);
-           },
-           (error) =>
-           {
-               Debug.LogError("Error fetching costumes: " + error);
-           }
-       ));
+        // Nếu có coroutine đang chạy, dừng lại trước
+        if (currentCostumeRequest != null)
+        {
+            StopCoroutine(currentCostumeRequest);
+            currentCostumeRequest = null;
+        }
+        // Tạo request mới
+        currentCostumeRequest = StartCoroutine(new CostumeAPIs().GetCostumesByEraIdRequest(
+            eraId,
+            (result) =>
+            {
+                currentCostumeRequest = null; // đánh dấu đã xong
+                var json = JsonConvert.DeserializeObject<CostumeResponse>(result);
+                GenerateCostumeMenu(json.data);
+            },
+            (error) =>
+            {
+                currentCostumeRequest = null; // đánh dấu đã xong
+                Debug.LogError("Error fetching costumes: " + error);
+            }
+        ));
     }
     #endregion
     /////////////////////////////////////////////////////////////
@@ -127,7 +134,7 @@ public class HomeController : MonoBehaviour
 
         if (scrollSnap != null)
         {
-            StartCoroutine(SnapAfterBuild1(scrollSnap, costumes));
+            StartCoroutine(SnapAfterBuild(scrollSnap, costumes));
         }
     }
 
@@ -155,7 +162,7 @@ public class HomeController : MonoBehaviour
         }
     }
 
-    private IEnumerator SnapAfterBuild1(ScrollSnapEffectHorizontal scrollSnap, List<CostumeModel> costumes)
+    private IEnumerator SnapAfterBuild(ScrollSnapEffectHorizontal scrollSnap, List<CostumeModel> costumes)
     {
         yield return null;
         yield return new WaitForEndOfFrame();
@@ -165,9 +172,9 @@ public class HomeController : MonoBehaviour
         scrollSnap.OnItemSelected = (index, item) =>
         {
             LoadTitleCostume(costumes[index].shortDescription);
-            Debug.Log("Selected Costume: " + costumes[index].name);
-            // PlayerPrefs.SetString("selectedCostumeId", costumes[index].id);
-            // PlayerPrefs.Save();
+            PlayerPrefs.SetString("selectedCostumeId", costumes[index].id);
+            PlayerPrefs.Save();
+            selectedCostumeId = costumes[index].id;
             // selectedCostumeId = costumes[index].id;
         };
         if (scrollSnap != null && scrollSnap.content != null)
@@ -177,4 +184,13 @@ public class HomeController : MonoBehaviour
     }
 
     #endregion
+
+    public void OnBackButton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Auth");
+    }
+    public void OnChooseButton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Customization");
+    }
 }

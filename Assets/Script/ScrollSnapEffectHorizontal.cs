@@ -47,7 +47,6 @@ public class ScrollSnapEffectHorizontal : MonoBehaviour, IEndDragHandler
                     items.Add(rt);
             }
         }
-        Debug.Log("Items count after rebuild: " + items.Count);
 
         currentIndex = -1;
         isSnapping = false;

@@ -7,6 +7,7 @@ public class LoginController : MonoBehaviour
 {
     public TMP_InputField emailInputField;
     public TMP_InputField passwordInputField;
+    public TMP_Text errorText;
     public Button loginButton;
     public TMP_Text emailErrorText;
     public TMP_Text passwordErrorText;
@@ -43,6 +44,11 @@ public class LoginController : MonoBehaviour
 
     public void Logout()
     {
+        //Reset all fields and states
+        _isAuthenticated = false;
+        emailInputField.text = "";
+        passwordInputField.text = "";
+        errorText.text = "";
         PlayerPrefs.DeleteKey("accessToken");
         PlayerPrefs.DeleteKey("refreshToken");
         PlayerPrefs.DeleteKey("userProfile");
