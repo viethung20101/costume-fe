@@ -1,57 +1,50 @@
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 using System.Collections;
+
 public class TextDialogue_VN : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI TextComponent;
-    [SerializeField] private float Speed;
-    [TextArea(3,100)]
-    [SerializeField] string[] Lines;
-    [SerializeField] private int Index;
+    [SerializeField] private TextMeshProUGUI TextComponent;
+    [SerializeField] private float Speed = 0.03f;
+    [TextArea(3, 100)]
+    [SerializeField] private string[] Lines;
+    private int currentIndex = -1;
+    private Coroutine typingCoroutine;
+
     void Start()
     {
-      TextComponent.text = string.Empty;
-      StartDialogue();        
-    }
-   private void StartDialogue()
-   {
-    Index = 0;
-    StartCoroutine(TypeLines());
-   }
-   private void NextLines()
-   {
-    if(Index < Lines.Length - 1)
-    {
-        Index++;
-      
         TextComponent.text = string.Empty;
-          StartCoroutine(TypeLines());
     }
-    else
+
+    /// <summary>
+    /// Cập nhật text theo chỉ số, hiển thị đúng dòng tương ứng.
+    /// </summary>
+    public void Update_Text(int newIndex)
     {
-       gameObject.SetActive(true);
-    }
-   }
-   IEnumerator TypeLines()
-   {
-    foreach(char C in Lines[Index].ToCharArray())
-    {
-        TextComponent.text += C;
-       yield return new WaitForSeconds(Speed);
-    }
-   }
-    // Update is called once per frame
-    public void Update_Text(int Index)
-    {
-        if (TextComponent.text == Lines[Index])
+        // Nếu index vượt phạm vi thì bỏ qua
+        if (newIndex < 0 || newIndex >= Lines.Length)
         {
-             NextLines();
+            Debug.LogWarning("⚠️ Index ngoài phạm vi Lines: " + newIndex);
+            return;
         }
-        else
+
+        // Nếu đang chạy coroutine trước đó thì dừng
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        currentIndex = newIndex;
+
+        // Xóa text cũ và bắt đầu đánh máy lại dòng mới
+        TextComponent.text = string.Empty;
+        typingCoroutine = StartCoroutine(TypeLines(Lines[currentIndex]));
+    }
+
+    private IEnumerator TypeLines(string line)
+    {
+        foreach (char c in line.ToCharArray())
         {
-            StopAllCoroutines();
-            TextComponent.text = Lines[Index];
+            TextComponent.text += c;
+            yield return new WaitForSeconds(Speed);
         }
     }
 }
