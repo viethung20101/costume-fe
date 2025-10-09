@@ -6004,6 +6004,7 @@ GameObject:
   - component: {fileID: 1037125667}
   - component: {fileID: 1037125669}
   - component: {fileID: 1037125668}
+  - component: {fileID: 1037125671}
   - component: {fileID: 1037125670}
   m_Layer: 5
   m_Name: Image_BackGround
@@ -6077,18 +6078,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037125666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e4fe201d5936343b387391ea4700a7, type: 3}
+  m_Script: {fileID: 11500000, guid: e25c082f3b7544c4aae4ed8bc5124b64, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TextDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::TextDialogue_EN
   TextComponent: {fileID: 709943338}
   Speed: 0.1
   Lines:
-  - "t\xF4i l\xE0 vua"
-  - "T\xF4i l\xE0 Ti\u1EC1n L\u1EC7"
-  - "B\u1ED9 \u0111\u1ED3 n\xE0y l\xE0 sao "
-  - "t\xF4i l\xE0 ai "
+  - I am the king of precedent
+  - What do you need?
+  - "T\xF4i Th\xE0nh J"
+  - "T\xF4i Th\xE0nh J"
+  Index: 0
+--- !u!114 &1037125671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037125666}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc5c3a45efaa88498bfa97f4f5da38f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TextDialogue_VN
+  TextComponent: {fileID: 709943338}
+  Speed: 0.1
+  Lines:
+  - "T\xF4i l\xE0 vua ti\u1EC1n l\u1EC7 "
+  - "B\u1EA1n c\u1EA7n g\xEC \xE0"
+  - "B\u1EA1n T\xECm g\xEC \xE0 "
+  - "B\u1EA1n T\xECm g\xEC \xE0 "
+  - "B\u1EA1n T\xECm g\xEC \xE0 "
+  - "T\xF4i Th\xE0nh J"
   Index: 0
 --- !u!1 &1044323057
 GameObject:
@@ -10820,19 +10843,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   language_VN_EN:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai "
-  - down, rotate left, left
+  - "b\u1EA1n t\xEAn g\xEC, b\u1EA1n mu\u1ED1n g\xEC, b\u1EA1n l\xE0 ai, xin ch\xE0o,
+    b\u1EA1n \u0103n g\xEC ch\u01B0a, n\xF3i "
+  - 'good morning, game over, hello  '
   Index: 0
   _startRecordButton: {fileID: 118184030}
   _commandsInputField: {fileID: 332147326}
   _microphoneDevicesDropdown: {fileID: 682693697}
   audioSource: {fileID: 2061454778}
-  Ban_Da_Co: {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
   _voiceLevelImage: {fileID: 803759009}
   ButtonLanguage:
   - {fileID: 1515328518}
   - {fileID: 1766265249}
-  textDialogue: {fileID: 1037125670}
+  textDialogue_EN: {fileID: 1037125670}
+  textDialogue_VN: {fileID: 1037125671}
+  Audio_language_VN:
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Audio_language_EN:
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
+  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
 --- !u!81 &1899691099
 AudioListener:
   m_ObjectHideFlags: 0

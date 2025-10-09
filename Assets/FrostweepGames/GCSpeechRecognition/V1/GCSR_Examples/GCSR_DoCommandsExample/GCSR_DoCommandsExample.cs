@@ -9,53 +9,35 @@ using System.Linq;
 using UnityEngine.EventSystems;
 using System.Globalization;
 using System.Text.RegularExpressions;
-
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
     public class GCSR_DoCommandsExample : MonoBehaviour
     {
 		[TextAreaAttribute(8,100)]
 		public string[] language_VN_EN;
-        [TextAreaAttribute(8,100)]
-        public string[] language_VN_EN_Say;
-        
-        [Header("UI References - Kéo thả từ Hierarchy")]
-        public Image _speechRecognitionState;
-        public Button _startRecordButton;
-        public InputField _commandsInputField;
-        public Text _resultText;
-        public Dropdown _languageDropdown;
-        public Dropdown _microphoneDevicesDropdown;
-        public Image _voiceLevelImage;
-        
-        [Header("Other References")]
-        public AudioSource audioSource;
-        public AudioClip[] Ban_Da_Co;
-        public GameObject[] ButtonLanguage;
-        public TextDialogue textDialogue;
-
         private GCSpeechRecognition _speechRecognition;
         public int Index;
-
+        private Image _speechRecognitionState;
+        public Button _startRecordButton;
+        public InputField _commandsInputField;
+        private Text _resultText;
+        private Dropdown _languageDropdown;
+        public Dropdown  _microphoneDevicesDropdown;
+        public AudioSource audioSource;
+        public Image _voiceLevelImage;
+        public GameObject[] ButtonLanguage;
+        [SerializeField] TextDialogue_EN textDialogue_EN;
+        [SerializeField] TextDialogue_VN textDialogue_VN;
+        [Header("Aduio Clip Language VN & EN")]
+        public AudioClip[] Audio_language_VN;
+        public AudioClip[] Audio_language_EN;
         private void Start()
         {
-            // Kiểm tra các reference
-            if (_commandsInputField == null)
-            {
-                Debug.LogError("CommandsInputField is not assigned!");
-                return;
-            }
-
-            if (language_VN_EN != null && language_VN_EN.Length > 1)
-            {
-                _commandsInputField.text = language_VN_EN[1];
-            }
-
-            
-                ButtonLanguage[0].SetActive(false);
-                ButtonLanguage[1].SetActive(true);
-            
-
+            textDialogue_EN.enabled = false;
+            textDialogue_VN.enabled = true;
+           // _commandsInputField.text = language_VN_EN[1];
+               ButtonLanguage[0].SetActive(true);
+             ButtonLanguage[1].SetActive(false);
             _speechRecognition = GCSpeechRecognition.Instance;
 
             // event handlers
@@ -66,30 +48,26 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
             _speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-            // UI setup - Sử dụng trực tiếp các reference đã kéo thả
-            if (_startRecordButton != null)
-                _startRecordButton.interactable = true;
+            // UI setup
+            _speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
+            _resultText = transform.Find("Canvas/Text_Result").GetComponent<Text>();
+            _commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
+            _languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
+           _microphoneDevicesDropdown = transform.Find("Canvas/Dropdown_MicrophoneDevices").GetComponent<Dropdown>();
+            _microphoneDevicesDropdown.onValueChanged.AddListener(MicrophoneDevicesDropdownOnValueChangedEventHandler);
+            _startRecordButton.interactable = true;
+            _speechRecognitionState.color = Color.yellow;
 
-            if (_speechRecognitionState != null)
-                _speechRecognitionState.color = Color.yellow;
-
-            if (_languageDropdown != null)
-            {
-                _languageDropdown.ClearOptions();
-                
-                // load languages
-                for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
-                {
-                    _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
-                }
-                
-                // Đổi sang tiếng Anh Mỹ (en_US)
-                _languageDropdown.value = _languageDropdown.options.FindIndex(
-                    x => x.text.Contains("en_US") || x.text.Contains("en-US"));
-            }
-
+            _languageDropdown.ClearOptions();
             _speechRecognition.RequestMicrophonePermission(null);
-            RefreshMicsButtonOnClickHandler();
+			   RefreshMicsButtonOnClickHandler();
+            _commandsInputField.text = language_VN_EN[0];
+            // load languages
+            for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
+            {
+                _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
+            }
+            _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
 
             // select first mic
             if (_speechRecognition.HasConnectedMicrophoneDevices())
@@ -100,53 +78,39 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
         private void OnDestroy()
         {
-            if (_speechRecognition != null)
-            {
-                _speechRecognition.RecognizeSuccessEvent -= RecognizeSuccessEventHandler;
-                _speechRecognition.RecognizeFailedEvent -= RecognizeFailedEventHandler;
-                _speechRecognition.FinishedRecordEvent -= FinishedRecordEventHandler;
-                _speechRecognition.StartedRecordEvent -= StartedRecordEventHandler;
-                _speechRecognition.RecordFailedEvent -= RecordFailedEventHandler;
-                _speechRecognition.EndTalkigEvent -= EndTalkigEventHandler;
-            }
+            _speechRecognition.RecognizeSuccessEvent -= RecognizeSuccessEventHandler;
+            _speechRecognition.RecognizeFailedEvent -= RecognizeFailedEventHandler;
+            _speechRecognition.FinishedRecordEvent -= FinishedRecordEventHandler;
+            _speechRecognition.StartedRecordEvent -= StartedRecordEventHandler;
+            _speechRecognition.RecordFailedEvent -= RecordFailedEventHandler;
+            _speechRecognition.EndTalkigEvent -= EndTalkigEventHandler;
         }
 
         public void StartRecordButtonOnClickHandler(BaseEventData data)
         {
-            StartCoroutine(TemporaryStart());
+          
+          StartCoroutine(TemporaryStart());
+            
         }
-
         IEnumerator TemporaryStart()
         {
             yield return new WaitForSeconds(0.13f);
-            if (_startRecordButton != null)
-                _startRecordButton.interactable = false;
-            
-            if (_resultText != null)
-                _resultText.text = string.Empty;
-                
+             _startRecordButton.interactable = false;
+            _resultText.text = string.Empty;
             _speechRecognition.StartRecord(false);
         }
-
-        private void RefreshMicsButtonOnClickHandler()
+       private void RefreshMicsButtonOnClickHandler()
 		{
 			_speechRecognition.RequestMicrophonePermission(null);
 
-            if (_microphoneDevicesDropdown != null)
-            {
-                _microphoneDevicesDropdown.ClearOptions();
-                var mics = _speechRecognition.GetMicrophoneDevices();
-                if (mics != null && mics.Length > 0)
-                {
-                    _microphoneDevicesDropdown.AddOptions(mics.ToList());
-                    MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
-                }
-            }
-        }
+			_microphoneDevicesDropdown.ClearOptions();
+			_microphoneDevicesDropdown.AddOptions(_speechRecognition.GetMicrophoneDevices().ToList());
 
+			MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
+        }
         private void Update()
         {
-            if(_speechRecognition.IsRecording && _voiceLevelImage != null)
+            if(_speechRecognition.IsRecording)
 			{
 				if (_speechRecognition.GetMaxFrame() > 0)
 				{
@@ -165,48 +129,38 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 					_voiceLevelImage.color = current >= 1f ? Color.green : Color.red;
 				}
 			}
-			else if (_voiceLevelImage != null)
+			else
 			{
 				_voiceLevelImage.fillAmount = 0f;
 			}
         }
-
 		private void MicrophoneDevicesDropdownOnValueChangedEventHandler(int value)
 		{
 			if (!_speechRecognition.HasConnectedMicrophoneDevices())
 				return;
 			_speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[value]);
 		}
-
         public void StopRecordButtonOnClickHandler(BaseEventData data)
         {
-            StartCoroutine(TemporaryStop());
+          StartCoroutine(TemporaryStop());
         }
-
         IEnumerator TemporaryStop()
         {
             yield return new WaitForSeconds(0.13f);
-            if (_startRecordButton != null)
-                _startRecordButton.interactable = true;
+               _startRecordButton.interactable = true;
             _speechRecognition.StopRecord();
         }
 
         private void StartedRecordEventHandler()
         {
-            if (_speechRecognitionState != null)
-                _speechRecognitionState.color = Color.red;
+            _speechRecognitionState.color = Color.red;
         }
 
         private void RecordFailedEventHandler()
         {
-            if (_speechRecognitionState != null)
-                _speechRecognitionState.color = Color.yellow;
-            
-            if (_resultText != null)
-                _resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
-            
-            if (_startRecordButton != null)
-                _startRecordButton.interactable = true;
+            _speechRecognitionState.color = Color.yellow;
+            _resultText.text = "<color=red>Start record Failed. Please check microphone device and try again.</color>";
+            _startRecordButton.interactable = true;
         }
 
         private void EndTalkigEventHandler(AudioClip clip, float[] raw)
@@ -216,21 +170,16 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
         private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
         {
-            if (_startRecordButton != null && _startRecordButton.interactable)
+            if (_startRecordButton.interactable)
             {
-                if (_speechRecognitionState != null)
-                    _speechRecognitionState.color = Color.yellow;
+                _speechRecognitionState.color = Color.yellow;
             }
 
             if (clip == null)
                 return;
 
             RecognitionConfig config = RecognitionConfig.GetDefault();
-            if (_languageDropdown != null)
-                config.languageCode = ((Enumerators.LanguageCode)_languageDropdown.value).Parse();
-            else
-                config.languageCode = "en-US"; // fallback
-            
+            config.languageCode = ((Enumerators.LanguageCode)_languageDropdown.value).Parse();
             config.audioChannelCount = clip.channels;
 
             GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
@@ -247,302 +196,164 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
         private void RecognizeFailedEventHandler(string error)
         {
-            if (_resultText != null)
-                _resultText.text = "Recognize Failed: " + error;
+            _resultText.text = "Recognize Failed: " + error;
         }
-
         public void On_EN()
 		{
-            if (ButtonLanguage != null && ButtonLanguage.Length >= 2)
-            {
-                ButtonLanguage[0].SetActive(false);
-                ButtonLanguage[1].SetActive(true);
-            }
-
-            if (_commandsInputField != null && language_VN_EN != null && language_VN_EN.Length > 1)
-			    _commandsInputField.text = language_VN_EN[1];
-			
-            if (_languageDropdown != null)
-			    _languageDropdown.value = _languageDropdown.options.FindIndex(
-                    x => x.text.Contains("en_US") || x.text.Contains("en-US"));
+            ButtonLanguage[0].SetActive(false);
+             ButtonLanguage[1].SetActive(true);
+			_commandsInputField.text = language_VN_EN[1];
+			_languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_US.Parse()));
 		}
-
 		public void On_VN()
 		{
-            if (ButtonLanguage != null && ButtonLanguage.Length >= 2)
-            {
-                ButtonLanguage[1].SetActive(false);
-                ButtonLanguage[0].SetActive(true);
-            }
-
-            if (_commandsInputField != null && language_VN_EN != null && language_VN_EN.Length > 0)
-			    _commandsInputField.text = language_VN_EN[0];
+		      ButtonLanguage[1].SetActive(false);
+               ButtonLanguage[0].SetActive(true);
+			_commandsInputField.text = language_VN_EN[0];
+			 _languageDropdown.value = _languageDropdown.options.IndexOf(
+                _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
+				
 			
-            if (_languageDropdown != null)
-			    _languageDropdown.value = _languageDropdown.options.FindIndex(
-                    x => x.text.Contains("vi_VN") || x.text.Contains("vi-VN"));
 		}
-
         private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
         {
-            if (_resultText == null || _commandsInputField == null)
-            {
-                Debug.LogError("UI references are null!");
-                return;
-            }
-
             _resultText.text = "Detected: ";
-
-            if (recognitionResponse.results == null)
-            {
-                _resultText.text += "No results";
-                return;
-            }
 
             string[] commands = _commandsInputField.text.Split(',');
 
             foreach (var result in recognitionResponse.results)
             {
-                if (result.alternatives == null) continue;
-
                 foreach (var alternative in result.alternatives)
                 {
-                    if (string.IsNullOrEmpty(alternative.transcript)) continue;
-
                     string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
-                    cleanTranscript = Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
+                    cleanTranscript = System.Text.RegularExpressions.Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
+
 
                     _resultText.text += "\nIncome text: " + cleanTranscript;
 
                     foreach (var command in commands)
                     {
-                        if (string.IsNullOrEmpty(command)) continue;
-
                         string cleanCommand = command.Trim().ToLowerInvariant();
 
                         if (cleanTranscript.Contains(cleanCommand))
                         {
-                            _resultText.text += "\nDid command: " + command + ","; 
+                            _resultText.text += "\nDid command: " + command +","; 
                             DoCommand(cleanCommand);
                         }
                     }
                 }
             }
         }
-
-      private void DoCommand(string command)
+    private void DoCommand(string rawCommand)
 {
-    command = command.Trim().ToLowerInvariant();
-    Debug.Log("💬 DO COMMAND với text: [" + command + "]");
+    // chuẩn hóa transcript đầu vào
+    string command = NormalizeText(rawCommand);
+    Debug.Log($"💬 DO COMMAND với text: [{command}]");
 
-    // KIỂM TRA TẤT CẢ CÁC BIẾN QUAN TRỌNG
-    if (language_VN_EN == null || language_VN_EN.Length == 0)
+    // build commandMap động
+    Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>();
+
+    string[] vietnameseCommands = (language_VN_EN.Length > 0) ? language_VN_EN[0].Split(',') : new string[0];
+    string[] englishCommands = (language_VN_EN.Length > 1) ? language_VN_EN[1].Split(',') : new string[0];
+
+    int maxLen = Math.Max(vietnameseCommands.Length, englishCommands.Length);
+
+    for (int i = 0; i < maxLen; i++)
     {
-        Debug.LogError("language_VN_EN is not set!");
-        return;
-    }
+        int index = i;
 
-    if (language_VN_EN_Say == null || language_VN_EN_Say.Length == 0)
-    {
-        Debug.LogError("language_VN_EN_Say is not set!");
-        return;
-    }
-
-    if (Index < 0 || Index >= language_VN_EN.Length)
-    {
-        Debug.LogError($"Index {Index} is out of range for language_VN_EN (length: {language_VN_EN.Length})");
-        return;
-    }
-
-    // LẤY COMMANDS TỪ language_VN_EN (dùng để so sánh)
-    string[] availableCommands = language_VN_EN[Index].Split(',');
-    
-    // LẤY COMMANDS TỪ language_VN_EN_Say (dùng để thực thi)
-    string[] sayCommands = language_VN_EN_Say[Index].Split(',');
-
-    Debug.Log($"Available commands: {string.Join(", ", availableCommands)}");
-    Debug.Log($"Say commands: {string.Join(", ", sayCommands)}");
-
-    // TÌM COMMAND KHỚP NHẤT - PHƯƠNG PHÁP ĐƠN GIẢN & HIỆU QUẢ
-    int foundIndex = -1;
-    string foundCommand = "";
-
-    for (int i = 0; i < availableCommands.Length; i++)
-    {
-        string cleanCmd = availableCommands[i].Trim().ToLowerInvariant();
-        
-        // PHƯƠNG PHÁP 1: Contains trực tiếp
-        if (command.Contains(cleanCmd) || cleanCmd.Contains(command))
+        // VN
+        if (i < vietnameseCommands.Length)
         {
-            foundIndex = i;
-            foundCommand = cleanCmd;
-            Debug.Log($"🎯 Exact match: '{cleanCmd}'");
-            break;
-        }
-        
-        // PHƯƠNG PHÁP 2: So sánh từ khóa chính (cho tiếng Anh)
-        if (IsEnglishCommandMatch(command, cleanCmd))
-        {
-            foundIndex = i;
-            foundCommand = cleanCmd;
-            Debug.Log($"🎯 English keyword match: '{cleanCmd}'");
-            break;
-        }
-    }
-
-    if (foundIndex >= 0)
-    {
-        Debug.Log($"✅ FOUND COMMAND: '{foundCommand}' at index: {foundIndex}");
-        
-        // Tìm index tương ứng trong sayCommands
-        int sayIndex = FindMatchingSayIndex(foundCommand, foundIndex, sayCommands);
-        
-        if (sayIndex >= 0)
-        {
-            ExecuteCommand(sayIndex, foundCommand);
-        }
-        else
-        {
-            Debug.LogError($"❌ No matching say command found for: {foundCommand}");
-        }
-    }
-    else
-    {
-        Debug.Log($"❌ NOT FOUND COMMAND: {command}");
-        
-        // HIỂN THỊ TẤT CẢ SO SÁNH ĐỂ DEBUG
-        Debug.Log("🔍 DEBUG - All comparisons:");
-        for (int i = 0; i < availableCommands.Length; i++)
-        {
-            string cleanCmd = availableCommands[i].Trim().ToLowerInvariant();
-            bool contains1 = command.Contains(cleanCmd);
-            bool contains2 = cleanCmd.Contains(command);
-            bool englishMatch = IsEnglishCommandMatch(command, cleanCmd);
-            
-            Debug.Log($"Command '{cleanCmd}': contains1={contains1}, contains2={contains2}, englishMatch={englishMatch}");
-        }
-    }
-}
-
-// HÀM SO SÁNH CHO TIẾNG ANH - ĐƠN GIẢN & HIỆU QUẢ
-private bool IsEnglishCommandMatch(string input, string command)
-{
-    // Xử lý các biến thể phổ biến của "what's your name"
-    if ((input.Contains("whats your name") || input.Contains("what your name") || input.Contains("whats name")) &&
-        (command.Contains("what your name") || command.Contains("whats your name")))
-    {
-        return true;
-    }
-    
-    // Xử lý "how are you"
-    if (input.Contains("how are you") && command.Contains("how are you"))
-    {
-        return true;
-    }
-    
-    // So sánh theo từ khóa chính
-    string[] inputWords = input.Split(' ');
-    string[] commandWords = command.Split(' ');
-    
-    int matchCount = 0;
-    foreach (string inputWord in inputWords)
-    {
-        foreach (string commandWord in commandWords)
-        {
-            if (inputWord == commandWord && inputWord.Length > 2)
+            string rawVN = vietnameseCommands[i];
+            string keyVN = NormalizeText(rawVN);
+            if (!string.IsNullOrEmpty(keyVN) && !commandMap.ContainsKey(keyVN))
             {
-                matchCount++;
-                break;
+                // thêm hành động cho VN tại index
+                commandMap.Add(keyVN, () =>
+                {
+                    if (Audio_language_VN != null && index < Audio_language_VN.Length && Audio_language_VN[index] != null)
+                    {
+                        audioSource.clip = Audio_language_VN[index];
+                        audioSource.Play();
+                    }
+                    textDialogue_VN?.Update_Text(index);
+                    Debug.Log($"✅ Executed VN index: {index} for key: [{keyVN}]");
+                });
+
+                Debug.Log($"Added VN key [{keyVN}] => index {index}");
+            }
+        }
+
+        // EN
+        if (i < englishCommands.Length)
+        {
+            string rawEN = englishCommands[i];
+            string keyEN = NormalizeText(rawEN);
+            if (!string.IsNullOrEmpty(keyEN) && !commandMap.ContainsKey(keyEN))
+            {
+                commandMap.Add(keyEN, () =>
+                {
+                    if (Audio_language_EN != null && index < Audio_language_EN.Length && Audio_language_EN[index] != null)
+                    {
+                        audioSource.clip = Audio_language_EN[index];
+                        audioSource.Play();
+                    }
+                    textDialogue_EN?.Update_Text(index);
+                    Debug.Log($"✅ Executed EN index: {index} for key: [{keyEN}]");
+                });
+
+                Debug.Log($"Added EN key [{keyEN}] => index {index}");
             }
         }
     }
-    
-    // Nếu có ít nhất 2 từ khớp nhau
-    return matchCount >= 2;
-}
 
-// HÀM TÌM INDEX TƯƠNG ỨNG TRONG sayCommands
-private int FindMatchingSayIndex(string foundCommand, int foundIndex, string[] sayCommands)
+    bool found = false;
+    foreach (var kvp in commandMap)
+    {
+        if (command.Contains(kvp.Key))
+        {
+            kvp.Value.Invoke();
+            Debug.Log("✅ Executed command (match): " + kvp.Key);
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        Debug.Log("❌ NOT FOUND COMMAND: " + command + " (len=" + command.Length + ")");
+    }
+
+    }
+    private string NormalizeText(string input)
 {
-    // Ưu tiên 1: Tìm command giống hệt trong sayCommands
-    for (int i = 0; i < sayCommands.Length; i++)
-    {
-        if (sayCommands[i].Trim().ToLowerInvariant() == foundCommand)
-        {
-            return i;
-        }
-    }
-    
-    // Ưu tiên 2: Dùng cùng index nếu nằm trong phạm vi
-    if (foundIndex < sayCommands.Length)
-    {
-        return foundIndex;
-    }
-    
-    // Ưu tiên 3: Tìm command có từ khóa tương tự
-    string foundCommandLower = foundCommand.ToLowerInvariant();
-    for (int i = 0; i < sayCommands.Length; i++)
-    {
-        string sayCmd = sayCommands[i].Trim().ToLowerInvariant();
-        if (foundCommandLower.Contains(sayCmd) || sayCmd.Contains(foundCommandLower))
-        {
-            return i;
-        }
-    }
-    
-    // Ưu tiên 4: Tìm theo từ khóa chính
-    if (foundCommandLower.Contains("name"))
-    {
-        for (int i = 0; i < sayCommands.Length; i++)
-        {
-            if (sayCommands[i].ToLowerInvariant().Contains("name"))
-                return i;
-        }
-    }
-    else if (foundCommandLower.Contains("how"))
-    {
-        for (int i = 0; i < sayCommands.Length; i++)
-        {
-            if (sayCommands[i].ToLowerInvariant().Contains("how"))
-                return i;
-        }
-    }
-    
-    return 0; // Mặc định trả về index 0 nếu không tìm thấy
+    if (string.IsNullOrEmpty(input)) return string.Empty;
+
+    input = input.Trim().ToLowerInvariant();
+
+   
+    input = Regex.Replace(input, @"[^\p{L}\p{N}\s]", "");
+
+    input = RemoveVietnameseDiacritics(input);
+
+    input = Regex.Replace(input, @"\s+", " ").Trim();
+
+    return input;
 }
 
-// HÀM THỰC THI COMMAND
-private void ExecuteCommand(int sayIndex, string foundCommand)
+public static string RemoveVietnameseDiacritics(string input)
 {
-    // XỬ LÝ AUDIO
-    if (Ban_Da_Co != null && sayIndex < Ban_Da_Co.Length && Ban_Da_Co[sayIndex] != null)
+    if (string.IsNullOrEmpty(input)) return string.Empty;
+    var normalized = input.Normalize(NormalizationForm.FormD);
+    var sb = new StringBuilder();
+    foreach (var c in normalized)
     {
-        audioSource.clip = Ban_Da_Co[sayIndex];
-        audioSource.Play();
-        Debug.Log($"🎵 Playing audio at sayIndex: {sayIndex}");
+        var uc = CharUnicodeInfo.GetUnicodeCategory(c);
+        if (uc != UnicodeCategory.NonSpacingMark)
+            sb.Append(c);
     }
-    else
-    {
-        Debug.LogWarning($"⚠️ Audio not available for sayIndex: {sayIndex}");
-    }
-
-    // XỬ LÝ TEXT DIALOGUE
-    if (textDialogue != null)
-    {
-        try
-        {
-            textDialogue.Update_Text(sayIndex);
-            Debug.Log($"📝 Updated text dialogue with sayIndex: {sayIndex}");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"❌ Error in TextDialogue.Update_Text: {e.Message}");
-        }
-    }
-    else
-    {
-        Debug.LogError("❌ TextDialogue is null!");
-    }
+    return sb.ToString().Normalize(NormalizationForm.FormC);
 }
-    }
+}
 }
