@@ -256,7 +256,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
                 },
                 (error) =>
                 {
-                    Debug.LogError("Error fetching active product categories: " + error);
+                    Debug.LogError("Error posting chatbot response: " + error);
                 }
             ));
         }
