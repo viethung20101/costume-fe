@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Globalization;
 using UnityEngine.Networking;
 using System.Collections;
+using QRCodeShareMain;
 
 public class ProductDetailController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class ProductDetailController : MonoBehaviour
     public TMP_Text productShortDescriptionText;
     public TMP_Text productPriceText;
     public Image productImage;
+
+    [Header("QR Code Section")]
+    public Image qrCodeImage;
 
     void Start()
     {
@@ -30,6 +34,7 @@ public class ProductDetailController : MonoBehaviour
             try
             {
                 SetInfomationProduct(selectedProductJson);
+                OnGenerateQRCode();
             }
             catch (System.Exception ex)
             {
@@ -37,6 +42,31 @@ public class ProductDetailController : MonoBehaviour
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Store");
             }
         }
+    }
+
+    private void OnGenerateQRCode()
+    {
+        string content = "Ahihi đồ ngu!";
+        var basicQRCode = BasicQRCode(content);
+        if (basicQRCode != null && qrCodeImage != null)
+        {
+            ShowImage(qrCodeImage, basicQRCode);
+        }
+        else
+        {
+            Debug.LogError("❌ Failed to generate or display QR code.");
+        }
+
+    }
+
+    private void ShowImage(Image showImage, Texture2D image)
+    {
+        showImage.sprite = ImageProcessing.ConvertTexture2DToSprite(image);
+        float imageSize = Mathf.Max(showImage.GetComponent<RectTransform>().sizeDelta.x, showImage.GetComponent<RectTransform>().sizeDelta.y);
+
+        showImage.GetComponent<RectTransform>().sizeDelta = image.width <= image.height ?
+            new Vector2(imageSize / image.height * image.width, imageSize) :
+            new Vector2(imageSize, imageSize * image.height / image.width);
     }
 
     void CheckAuthentication()
@@ -91,6 +121,14 @@ public class ProductDetailController : MonoBehaviour
             Debug.LogWarning("No valid image media found in product data.");
         }
     }
+
+    private Texture2D BasicQRCode(string content)
+    {
+        QRImageProperties properties = new QRImageProperties(500, 500, 50);
+        Texture2D QRCodeImage = QRCodeShare.CreateQRCodeImage(content, properties);
+        return QRCodeImage;
+    }
+
     public void OnBackButton()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Store");

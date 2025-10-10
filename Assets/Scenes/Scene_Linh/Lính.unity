@@ -3553,36 +3553,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 858281659}
+  Index: 0
   _startRecordButton: {fileID: 751721743}
   _commandsInputField: {fileID: 2016868468}
-  _resultText: {fileID: 1857338412}
-  _languageDropdown: {fileID: 1528817053}
   _microphoneDevicesDropdown: {fileID: 1721714366}
-  _voiceLevelImage: {fileID: 2085758744}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 2085758744}
   ButtonLanguage:
   - {fileID: 2030490815}
   - {fileID: 1095345428}
   textDialogue: {fileID: 1877160528}
-  Index: 0
 --- !u!20 &92697250
 Camera:
   m_ObjectHideFlags: 0
@@ -12352,7 +12333,7 @@ GameObject:
   - component: {fileID: 330566859}
   - component: {fileID: 330566858}
   m_Layer: 5
-  m_Name: Image_BackGround
+  m_Name: Image_BackGroundT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13405,36 +13386,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 1668614074}
+  Index: 0
   _startRecordButton: {fileID: 62475050}
   _commandsInputField: {fileID: 732401979}
-  _resultText: {fileID: 1137801599}
-  _languageDropdown: {fileID: 1082095645}
   _microphoneDevicesDropdown: {fileID: 1512974845}
-  _voiceLevelImage: {fileID: 1724929674}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1724929674}
   ButtonLanguage:
   - {fileID: 853882623}
   - {fileID: 1740192206}
   textDialogue: {fileID: 1841597700}
-  Index: 0
 --- !u!20 &365906317
 Camera:
   m_ObjectHideFlags: 0
@@ -18420,7 +18382,7 @@ GameObject:
   - component: {fileID: 500116917}
   - component: {fileID: 500116916}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 M\u1EA1c"
+  m_Name: "L\xEDnh  Nh\xE0 M\u1EA1c"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19079,7 +19041,7 @@ GameObject:
   - component: {fileID: 510180447}
   - component: {fileID: 510180446}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Nh\xE0 H\u1ED3ng b\xE0ng"
+  m_Name: "L\xEDnh Nh\xE0 H\u1ED3ng b\xE0ng"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20645,36 +20607,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 777122092}
+  Index: 0
   _startRecordButton: {fileID: 2028336343}
   _commandsInputField: {fileID: 2071700571}
-  _resultText: {fileID: 1654062396}
-  _languageDropdown: {fileID: 1154421510}
   _microphoneDevicesDropdown: {fileID: 193186498}
-  _voiceLevelImage: {fileID: 458267199}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 458267199}
   ButtonLanguage:
   - {fileID: 1528065362}
   - {fileID: 1736116359}
   textDialogue: {fileID: 772106814}
-  Index: 0
 --- !u!20 &565145599
 Camera:
   m_ObjectHideFlags: 0
@@ -20791,7 +20734,7 @@ GameObject:
   - component: {fileID: 567790907}
   - component: {fileID: 567790906}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 \u0110inh"
+  m_Name: "L\xEDnh   Nh\xE0 \u0110inh"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22245,7 +22188,7 @@ GameObject:
   - component: {fileID: 609019545}
   - component: {fileID: 609019544}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0  B\u1EAFc I"
+  m_Name: "L\xEDnh V\xF5  Nh\xE0  B\u1EAFc I"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23691,36 +23634,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 1614896084}
+  Index: 0
   _startRecordButton: {fileID: 885744396}
   _commandsInputField: {fileID: 1532274211}
-  _resultText: {fileID: 2099826900}
-  _languageDropdown: {fileID: 243266956}
   _microphoneDevicesDropdown: {fileID: 1740608378}
-  _voiceLevelImage: {fileID: 158079418}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 158079418}
   ButtonLanguage:
   - {fileID: 623266665}
   - {fileID: 1560485361}
   textDialogue: {fileID: 371668865}
-  Index: 0
 --- !u!20 &643833160
 Camera:
   m_ObjectHideFlags: 0
@@ -24525,7 +24449,7 @@ GameObject:
   - component: {fileID: 665586805}
   - component: {fileID: 665586804}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 Tr\u1EA7n"
+  m_Name: "L\xEDnh  Nh\xE0 Tr\u1EA7n"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25954,7 +25878,7 @@ GameObject:
   - component: {fileID: 700198780}
   - component: {fileID: 700198779}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 Tr\u1ECBnh - Nguy\u1EC5n"
+  m_Name: "L\xEDnh Nh\xE0 Tr\u1ECBnh - Nguy\u1EC5n"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31231,7 +31155,7 @@ GameObject:
   - component: {fileID: 849832373}
   - component: {fileID: 849832372}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 L\xFD"
+  m_Name: "L\xEDnh Nh\xE0 L\xFD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33144,36 +33068,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 364158173}
+  Index: 0
   _startRecordButton: {fileID: 1935399918}
   _commandsInputField: {fileID: 1591289777}
-  _resultText: {fileID: 1397956258}
-  _languageDropdown: {fileID: 622589222}
   _microphoneDevicesDropdown: {fileID: 184808415}
-  _voiceLevelImage: {fileID: 110347840}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 110347840}
   ButtonLanguage:
   - {fileID: 1771881133}
   - {fileID: 1801535880}
   textDialogue: {fileID: 954367821}
-  Index: 0
 --- !u!20 &885080955
 Camera:
   m_ObjectHideFlags: 0
@@ -35236,7 +35141,7 @@ GameObject:
   - component: {fileID: 932378028}
   - component: {fileID: 932378027}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Nh\xE0 Nguy\u1EC5n"
+  m_Name: "L\xEDnh  Nh\xE0 Nguy\u1EC5n"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36006,7 +35911,7 @@ GameObject:
   - component: {fileID: 946348380}
   - component: {fileID: 946348379}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 T\xE2y S\u01A1n"
+  m_Name: "L\xEDnh Nh\xE0 T\xE2y S\u01A1n"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36928,36 +36833,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 856082892}
+  Index: 0
   _startRecordButton: {fileID: 859631809}
   _commandsInputField: {fileID: 386362956}
-  _resultText: {fileID: 883036401}
-  _languageDropdown: {fileID: 257024310}
   _microphoneDevicesDropdown: {fileID: 1821896226}
-  _voiceLevelImage: {fileID: 1086005205}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1086005205}
   ButtonLanguage:
   - {fileID: 921610191}
   - {fileID: 727786637}
   textDialogue: {fileID: 6474882}
-  Index: 0
 --- !u!20 &960031689
 Camera:
   m_ObjectHideFlags: 0
@@ -41385,36 +41271,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 2145301101}
+  Index: 0
   _startRecordButton: {fileID: 157446834}
   _commandsInputField: {fileID: 1668519702}
-  _resultText: {fileID: 926249120}
-  _languageDropdown: {fileID: 631123668}
   _microphoneDevicesDropdown: {fileID: 706115542}
-  _voiceLevelImage: {fileID: 1048092402}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1048092402}
   ButtonLanguage:
   - {fileID: 2042190148}
   - {fileID: 1930949229}
   textDialogue: {fileID: 990785862}
-  Index: 0
 --- !u!20 &1069001632
 Camera:
   m_ObjectHideFlags: 0
@@ -43879,7 +43746,7 @@ GameObject:
   - component: {fileID: 1119096976}
   - component: {fileID: 1119096975}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 H\u1ED3"
+  m_Name: "L\xEDnh Nh\xE0 H\u1ED3"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47941,7 +47808,7 @@ GameObject:
   - component: {fileID: 1219473398}
   - component: {fileID: 1219473397}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Nh\xE0 H\u1EADu L\xEA"
+  m_Name: "L\xEDnh Nh\xE0 H\u1EADu L\xEA"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48871,7 +48738,7 @@ GameObject:
   - component: {fileID: 1248482024}
   - component: {fileID: 1248482023}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Trung H\u01B0ng"
+  m_Name: "L\xEDnh Trung H\u01B0ng"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49664,36 +49531,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 27672167}
+  Index: 0
   _startRecordButton: {fileID: 1304711624}
   _commandsInputField: {fileID: 946405192}
-  _resultText: {fileID: 1731971470}
-  _languageDropdown: {fileID: 1542604524}
   _microphoneDevicesDropdown: {fileID: 1965909414}
-  _voiceLevelImage: {fileID: 1261962861}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1261962861}
   ButtonLanguage:
   - {fileID: 2108884869}
   - {fileID: 1187257672}
   textDialogue: {fileID: 1395045802}
-  Index: 0
 --- !u!20 &1268510364
 Camera:
   m_ObjectHideFlags: 0
@@ -53277,7 +53125,7 @@ GameObject:
   - component: {fileID: 1350619258}
   - component: {fileID: 1350619257}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Nh\xE0 Ng\xF4"
+  m_Name: "L\xEDnh  Nh\xE0 Ng\xF4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53765,7 +53613,7 @@ GameObject:
   - component: {fileID: 1369090847}
   - component: {fileID: 1369090846}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 \xC2u L\u1EA1c"
+  m_Name: "L\xEDnh Nh\xE0 \xC2u L\u1EA1c"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54363,36 +54211,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 862842079}
+  Index: 0
   _startRecordButton: {fileID: 1479790403}
   _commandsInputField: {fileID: 968133507}
-  _resultText: {fileID: 1091136330}
-  _languageDropdown: {fileID: 441627967}
   _microphoneDevicesDropdown: {fileID: 1055063621}
-  _voiceLevelImage: {fileID: 135768939}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 135768939}
   ButtonLanguage:
   - {fileID: 1114383106}
   - {fileID: 1833597900}
   textDialogue: {fileID: 1998183116}
-  Index: 0
 --- !u!20 &1380314918
 Camera:
   m_ObjectHideFlags: 0
@@ -54647,7 +54476,7 @@ GameObject:
   - component: {fileID: 1383986263}
   - component: {fileID: 1383986262}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Ti\u1EC1n L\u1EC7"
+  m_Name: "L\xEDnh Ti\u1EC1n L\u1EC7"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54798,36 +54627,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 1741768293}
+  Index: 0
   _startRecordButton: {fileID: 154178838}
   _commandsInputField: {fileID: 1539614836}
-  _resultText: {fileID: 1577862324}
-  _languageDropdown: {fileID: 525004430}
   _microphoneDevicesDropdown: {fileID: 533404652}
-  _voiceLevelImage: {fileID: 1507983721}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1507983721}
   ButtonLanguage:
   - {fileID: 1956229244}
   - {fileID: 1083196523}
   textDialogue: {fileID: 1882476723}
-  Index: 0
 --- !u!20 &1385944787
 Camera:
   m_ObjectHideFlags: 0
@@ -57002,36 +56812,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 705127753}
+  Index: 0
   _startRecordButton: {fileID: 305689859}
   _commandsInputField: {fileID: 354485412}
-  _resultText: {fileID: 1561088694}
-  _languageDropdown: {fileID: 1058227211}
   _microphoneDevicesDropdown: {fileID: 1109143599}
-  _voiceLevelImage: {fileID: 1479160114}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1479160114}
   ButtonLanguage:
   - {fileID: 1320362533}
   - {fileID: 462579142}
   textDialogue: {fileID: 371743353}
-  Index: 0
 --- !u!20 &1447923078
 Camera:
   m_ObjectHideFlags: 0
@@ -58055,36 +57846,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 1177968718}
+  Index: 0
   _startRecordButton: {fileID: 1913393860}
   _commandsInputField: {fileID: 785201659}
-  _resultText: {fileID: 975849250}
-  _languageDropdown: {fileID: 259867143}
   _microphoneDevicesDropdown: {fileID: 704352921}
-  _voiceLevelImage: {fileID: 1956411961}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1956411961}
   ButtonLanguage:
   - {fileID: 1461432196}
   - {fileID: 1700172661}
   textDialogue: {fileID: 2117009386}
-  Index: 0
 --- !u!20 &1473846178
 Camera:
   m_ObjectHideFlags: 0
@@ -58201,7 +57973,7 @@ GameObject:
   - component: {fileID: 1473984987}
   - component: {fileID: 1473984986}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Nh\xE0 B\u1EAFc II"
+  m_Name: "L\xEDnh Nh\xE0 B\u1EAFc II"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59167,7 +58939,7 @@ GameObject:
   - component: {fileID: 1490677717}
   - component: {fileID: 1490677716}
   m_Layer: 0
-  m_Name: "Quan V\xF5  Nh\xE0 L\xEA Trung H\u01B0ng"
+  m_Name: "T\u01B0\u1EDBng  Nh\xE0 L\xEA Trung H\u01B0ng"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60715,36 +60487,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 2136257413}
+  Index: 0
   _startRecordButton: {fileID: 276914155}
   _commandsInputField: {fileID: 2137710532}
-  _resultText: {fileID: 194082280}
-  _languageDropdown: {fileID: 1099622729}
   _microphoneDevicesDropdown: {fileID: 295585663}
-  _voiceLevelImage: {fileID: 1532505632}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1532505632}
   ButtonLanguage:
   - {fileID: 20117126}
   - {fileID: 179546936}
   textDialogue: {fileID: 1773955086}
-  Index: 0
 --- !u!20 &1526780103
 Camera:
   m_ObjectHideFlags: 0
@@ -62190,7 +61943,7 @@ GameObject:
   - component: {fileID: 1542993579}
   - component: {fileID: 1542993578}
   m_Layer: 0
-  m_Name: "Quan V\xF5 Parent"
+  m_Name: "L\xEDnh Parent"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64061,36 +63814,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 927655339}
+  Index: 0
   _startRecordButton: {fileID: 1633706302}
   _commandsInputField: {fileID: 1834694382}
-  _resultText: {fileID: 1545653610}
-  _languageDropdown: {fileID: 1090218823}
   _microphoneDevicesDropdown: {fileID: 73730004}
-  _voiceLevelImage: {fileID: 1121127927}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1121127927}
   ButtonLanguage:
   - {fileID: 893925789}
   - {fileID: 990274631}
   textDialogue: {fileID: 885556936}
-  Index: 0
 --- !u!20 &1591075579
 Camera:
   m_ObjectHideFlags: 0
@@ -68128,37 +67862,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 699323343}
+  - how are you, what your name, whats your name, who are you
+  Index: 0
   _startRecordButton: {fileID: 1691139534}
   _commandsInputField: {fileID: 740109960}
-  _resultText: {fileID: 306380437}
-  _languageDropdown: {fileID: 863851336}
   _microphoneDevicesDropdown: {fileID: 1305231230}
-  _voiceLevelImage: {fileID: 674563867}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 674563867}
   ButtonLanguage:
   - {fileID: 1308033378}
   - {fileID: 1690395524}
   textDialogue: {fileID: 330566858}
-  Index: 0
 --- !u!20 &1673335373
 Camera:
   m_ObjectHideFlags: 0
@@ -68703,36 +68419,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 929851458}
+  Index: 0
   _startRecordButton: {fileID: 1030837087}
   _commandsInputField: {fileID: 2117286690}
-  _resultText: {fileID: 1078012653}
-  _languageDropdown: {fileID: 1612853142}
   _microphoneDevicesDropdown: {fileID: 1959379537}
-  _voiceLevelImage: {fileID: 1832837982}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1832837982}
   ButtonLanguage:
   - {fileID: 1823934044}
   - {fileID: 667906989}
   textDialogue: {fileID: 698017422}
-  Index: 0
 --- !u!20 &1678776314
 Camera:
   m_ObjectHideFlags: 0
@@ -79573,36 +79270,17 @@ MonoBehaviour:
   language_VN_EN:
   - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
     nh\xE0 vua, how are you, what your name, whats your name"
-  language_VN_EN_Say:
-  - "b\u1EA1n t\xEAn g\xEC,  b\u1EA1n l\xE0 ai, th\u1EDDi nh\xE0 l\xFD, th\u1EDDi
-    nh\xE0 vua"
-  - how are you, what your name, whats your name
-  _speechRecognitionState: {fileID: 1692763742}
+  Index: 0
   _startRecordButton: {fileID: 1627949106}
   _commandsInputField: {fileID: 1632888627}
-  _resultText: {fileID: 956798604}
-  _languageDropdown: {fileID: 1780376422}
   _microphoneDevicesDropdown: {fileID: 401602975}
-  _voiceLevelImage: {fileID: 1628801689}
   audioSource: {fileID: 987349994}
-  Ban_Da_Co:
-  - {fileID: 8300000, guid: 6a63ffb9bfd55494ab229aa9f66945bb, type: 3}
-  - {fileID: 8300000, guid: 128ed1e98a2f0804c924d346c4e2322c, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
-  - {fileID: 8300000, guid: be7ce50a3d5c057459eba3f954cdbff3, type: 3}
+  Ban_Da_Co: {fileID: 0}
+  _voiceLevelImage: {fileID: 1628801689}
   ButtonLanguage:
   - {fileID: 1933791118}
   - {fileID: 746907563}
   textDialogue: {fileID: 838321987}
-  Index: 0
 --- !u!20 &1953072424
 Camera:
   m_ObjectHideFlags: 0
