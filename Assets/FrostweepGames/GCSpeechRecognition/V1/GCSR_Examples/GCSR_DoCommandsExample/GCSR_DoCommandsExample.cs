@@ -216,50 +216,61 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
         }
         private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
+{
+    _resultText.text = "Detected: ";
+
+    string[] commands = _commandsInputField.text.Split(',');
+    for (int i = 0; i < commands.Length; i++)
+        commands[i] = commands[i].Trim().ToLowerInvariant();
+
+    foreach (var result in recognitionResponse.results)
+    {
+        foreach (var alternative in result.alternatives)
         {
-            _resultText.text = "Detected: ";
+            string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
+            cleanTranscript = System.Text.RegularExpressions.Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
 
-            string[] commands = _commandsInputField.text.Split(',');
+            _resultText.text += "\nUser said: " + cleanTranscript;
 
-            foreach (var result in recognitionResponse.results)
+            bool matched = false;
+
+            foreach (var command in commands)
             {
-                foreach (var alternative in result.alternatives)
+                if (cleanTranscript.Contains(command))
                 {
-                    string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
-                    cleanTranscript = System.Text.RegularExpressions.Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
+                    matched = true;
+                    _resultText.text += "\n✅ Did command: " + command;
+                    Debug.Log("🎯 Voice matched command: " + command);
 
-
-                    _resultText.text += "\nIncome text: " + cleanTranscript;
-
-                    foreach (var command in commands)
-                    {
-                        string cleanCommand = command.Trim().ToLowerInvariant();
-
-                        if (cleanTranscript.Contains(cleanCommand))
-                        {
-                            _resultText.text += "\nDid command: " + command + ",";
-
-                            DoCommand(cleanCommand);
-                        }
-                    }
-                    // ChatbotResponse(_resultText.text);
+                    DoCommand(command);
+                    break;
                 }
             }
+
+          
+          
+                ChatbotResponse(cleanTranscript);
+         
+            
         }
-        void ChatbotResponse(string message)
+    }
+}
+       void ChatbotResponse(string message)
+{
+    StartCoroutine(new ChatbotAPIs().ChatbotRequest(
+        message,
+        (result) =>
         {
-            StartCoroutine(new ChatbotAPIs().ChatbotRequest(
-                message,
-                (result) =>
-                {
-                    Debug.Log("Chatbot response: " + result);
-                },
-                (error) =>
-                {
-                    Debug.LogError("Error fetching active product categories: " + error);
-                }
-            ));
+            Debug.Log("🤖 Chatbot response: " + result);
+            _resultText.text += "\n🤖 " + result; // hiện luôn text chatbot trên UI
+        },
+        (error) =>
+        {
+            Debug.LogError("❌ Chatbot error: " + error);
+            _resultText.text += "\n❌ Chatbot error: " + error;
         }
+    ));
+}
         private void DoCommand(string rawCommand)
         {
             // chuẩn hóa transcript đầu vào

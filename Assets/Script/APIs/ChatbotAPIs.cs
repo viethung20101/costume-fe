@@ -10,9 +10,16 @@ public class ChatbotAPIs
     private string baseUrl = ApiConfig.BaseUrl;
 
     // ===== POST CHAT BOT =====
-    public IEnumerator ChatbotRequest(string message, Action<string> onSuccess, Action<string> onError)
+  public IEnumerator ChatbotRequest(string message, Action<string> onSuccess, Action<string> onError)
     {
         string url = baseUrl + "/chat-bot/chat";
+        // string accessToken = PlayerPrefs.GetString("accessToken", "");
+
+        // if (string.IsNullOrEmpty(accessToken))
+        // {
+        //     onError?.Invoke("Chưa có token, hãy login trước.");
+        //     yield break;
+        // }
 
         string jsonBody = JsonUtility.ToJson(new Chatbot(message));
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
@@ -21,6 +28,7 @@ public class ChatbotAPIs
         www.uploadHandler = new UploadHandlerRaw(bodyRaw);
         www.downloadHandler = new DownloadHandlerBuffer();
         www.SetRequestHeader("Content-Type", "application/json");
+        // www.SetRequestHeader("Authorization", "Bearer " + accessToken);
 
         yield return www.SendWebRequest();
 
@@ -36,6 +44,7 @@ public class ChatbotAPIs
             onSuccess?.Invoke(responseText);
         }
     }
+
 
 }
 public class Chatbot
