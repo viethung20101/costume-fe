@@ -26,6 +26,16 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 			}
 		}
 
+		// ✅ Thêm API Text-to-Speech (TTS)
+		[Header("🔊 Google Cloud Text-To-Speech API")]
+		[PasswordField]
+		public string textToSpeechAPI;
+
+		public string GetTextToSpeechUrl()
+		{
+			return textToSpeechAPI + apiKey;
+		}
+
 		public event Action<RecognitionResponse> RecognizeSuccessEvent;
 		public event Action<string> RecognizeFailedEvent;
 		public event Action<Operation> LongRunningRecognizeSuccessEvent;
@@ -43,9 +53,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 		public event Action<AudioClip, float[]> EndTalkigEvent;
 
 		private ISpeechRecognitionManager _speechRecognitionManager;
-
 		private IMediaManager _mediaManager;
-
 		private IVoiceDetectionManager _voiceDetectionManager;
 
 		private bool _IsCurrentInstance { get { return Instance == this; } }
@@ -66,9 +74,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 		public string apiKey;
 
 		public AudioClip LastRecordedClip => _mediaManager.LastRecordedClip;
-
 		public bool IsRecording => _mediaManager.IsRecording;
-
 		public float[] LastRecordedRaw => _mediaManager.LastRecordedRaw;
 
 		private void Awake()
@@ -147,19 +153,11 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 			_speechRecognitionManager.ListOperationsFailedEvent -= ListOperationsFailedEventHandler;
 
 			ServiceLocator.Instance.Dispose();
-
 			_Instance = null;
 		}
 
-		public float GetLastFrame()
-		{
-			return _mediaManager.GetLastFrame();
-		}
-
-		public float GetMaxFrame()
-		{
-			return _mediaManager.GetMaxFrame();
-		}
+		public float GetLastFrame() => _mediaManager.GetLastFrame();
+		public float GetMaxFrame() => _mediaManager.GetMaxFrame();
 
 		public void StartRecord(bool withVoiceDetection)
 		{
@@ -169,171 +167,51 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1
 			_mediaManager.StartRecord(withVoiceDetection);
 		}
 
-		public void StopRecord()
-		{
-			_mediaManager.StopRecord();
-		}
-
-		public void DetectThreshold()
-		{
-			_voiceDetectionManager.DetectThreshold();
-		}
-
-		public bool ReadyToRecord()
-		{
-			return _mediaManager.ReadyToRecord();
-		}
-
-		public string[] GetMicrophoneDevices()
-		{
-			return _mediaManager.GetMicrophoneDevices();
-		}
-
-		public bool HasConnectedMicrophoneDevices()
-		{
-			return _mediaManager.HasConnectedMicrophoneDevices();
-		}
-
-		public void SetMicrophoneDevice(string device)
-		{
-			_mediaManager.SetMicrophoneDevice(device);
-		}
-
-		public void SaveLastRecordedAudioClip(string path)
-		{
-			_mediaManager.SaveLastRecordedAudioClip(path);
-		}
-
-		public long Recognize(GeneralRecognitionRequest recognitionRequest)
-		{
-			return _speechRecognitionManager.Recognize(recognitionRequest);
-		}
-
-		public long LongRunningRecognize(GeneralRecognitionRequest recognitionRequest)
-		{
-			return _speechRecognitionManager.LongRunningRecognize(recognitionRequest);
-		}
-
-		public long GetOperation(string operation)
-		{
-			return _speechRecognitionManager.GetOperation(operation);
-		}
-
+		public void StopRecord() => _mediaManager.StopRecord();
+		public void DetectThreshold() => _voiceDetectionManager.DetectThreshold();
+		public bool ReadyToRecord() => _mediaManager.ReadyToRecord();
+		public string[] GetMicrophoneDevices() => _mediaManager.GetMicrophoneDevices();
+		public bool HasConnectedMicrophoneDevices() => _mediaManager.HasConnectedMicrophoneDevices();
+		public void SetMicrophoneDevice(string device) => _mediaManager.SetMicrophoneDevice(device);
+		public void SaveLastRecordedAudioClip(string path) => _mediaManager.SaveLastRecordedAudioClip(path);
+		public long Recognize(GeneralRecognitionRequest recognitionRequest) => _speechRecognitionManager.Recognize(recognitionRequest);
+		public long LongRunningRecognize(GeneralRecognitionRequest recognitionRequest) => _speechRecognitionManager.LongRunningRecognize(recognitionRequest);
+		public long GetOperation(string operation) => _speechRecognitionManager.GetOperation(operation);
 		public long GetListOperations(string name = null, string filter = null, int pageSize = -1, string pageToken = null)
-		{
-			return _speechRecognitionManager.GetListOperations(name, filter, pageSize, pageToken);
-		}
+			=> _speechRecognitionManager.GetListOperations(name, filter, pageSize, pageToken);
+		public bool CancelRequest(long id) => _speechRecognitionManager.CancelRequest(id);
+		public int CancelAllRequests() => _speechRecognitionManager.CancelAllRequests();
+		public bool HasMicrophonePermission() => _mediaManager.HasMicrophonePermission();
+		public void RequestMicrophonePermission(Action<bool> callback) => _mediaManager.RequestMicrophonePermission(callback);
 
-		public bool CancelRequest(long id)
-		{
-			return _speechRecognitionManager.CancelRequest(id);
-		}
-
-		public int CancelAllRequests()
-		{
-			return _speechRecognitionManager.CancelAllRequests();
-		}
-
-		public bool HasMicrophonePermission()
-		{
-			return _mediaManager.HasMicrophonePermission();
-		}
-
-		/// <summary>
-		/// Currently works as synchronous function with callback when app unpauses
-		/// could not work properly if has enabled checkbox regarding additional frame in pause
-		/// </summary>
-		/// <param name="callback"></param>
-		public void RequestMicrophonePermission(Action<bool> callback)
-		{
-			_mediaManager.RequestMicrophonePermission(callback);
-		}
-
-		// Uploads the audio clip to GCS using bucket name and file name
-		// Make sure service account private key is set in the config
-		// The bucket Permissions Access control must be set to Fine-grained
-		// The uploaded file will be public and will expire in 36000 seconds
 		public async Task<string> UploadToStorage(string bucketName, AudioClip audioClip, string fileName = "default")
 		{
 #if FG_GCSTORAGE
-			return await Storage.GCStorage.Instance.
-				UploadDataAsync(
-					bucketName, 
-					AudioClip2PCMConverter.AudioClip2PCM(audioClip), 
-					$"{fileName}_{SystemInfo.deviceUniqueIdentifier}.wav",
-					lifetime: 36000
-				);
+			return await Storage.GCStorage.Instance.UploadDataAsync(
+				bucketName,
+				AudioClip2PCMConverter.AudioClip2PCM(audioClip),
+				$"{fileName}_{SystemInfo.deviceUniqueIdentifier}.wav",
+				lifetime: 36000
+			);
 #else
 			return await Task.FromResult<string>(null);
 #endif
 		}
 
 		#region handlers
-		private void RecognizeSuccessEventHandler(RecognitionResponse response)
-		{
-			RecognizeSuccessEvent?.Invoke(response);
-		}
-
-		private void LongRunningRecognizeSuccessEventHandler(Operation operation)
-		{
-			LongRunningRecognizeSuccessEvent?.Invoke(operation);
-		}
-
-		private void RecognizeFailedEventHandler(string error)
-		{
-			RecognizeFailedEvent?.Invoke(error);
-		}
-
-		private void LongRunningRecognizeFailedEventHandler(string error)
-		{
-			LongRunningRecognizeFailedEvent?.Invoke(error);
-		}
-
-		private void RecordFailedEventHandler()
-		{
-			RecordFailedEvent?.Invoke();
-		}
-
-		private void TalkBeganEventHandler()
-		{
-			BeginTalkigEvent?.Invoke();
-		}
-
-		private void TalkEndedEventHandler(AudioClip clip, float[] raw)
-		{
-			EndTalkigEvent?.Invoke(clip, raw);
-		}
-
-		private void RecordStartedEventHandler()
-		{
-			StartedRecordEvent?.Invoke();
-		}
-
-		private void RecordEndedEventHandler(AudioClip clip, float[] raw)
-		{
-			FinishedRecordEvent?.Invoke(clip, raw);
-		}
-
-		private void GetOperationSuccessEventHandler(Operation operation)
-		{
-			GetOperationSuccessEvent?.Invoke(operation);
-		}
-
-		private void GetOperationFailedEventHandler(string error)
-		{
-			GetOperationFailedEvent?.Invoke(error);
-		}
-
-		private void ListOperationsSuccessEventHandler(ListOperationsResponse operationsResponse)
-		{
-			ListOperationsSuccessEvent?.Invoke(operationsResponse);
-		}
-
-		private void ListOperationsFailedEventHandler(string error)
-		{
-			ListOperationsFailedEvent?.Invoke(error);
-		}
-
+		private void RecognizeSuccessEventHandler(RecognitionResponse response) => RecognizeSuccessEvent?.Invoke(response);
+		private void LongRunningRecognizeSuccessEventHandler(Operation operation) => LongRunningRecognizeSuccessEvent?.Invoke(operation);
+		private void RecognizeFailedEventHandler(string error) => RecognizeFailedEvent?.Invoke(error);
+		private void LongRunningRecognizeFailedEventHandler(string error) => LongRunningRecognizeFailedEvent?.Invoke(error);
+		private void RecordFailedEventHandler() => RecordFailedEvent?.Invoke();
+		private void TalkBeganEventHandler() => BeginTalkigEvent?.Invoke();
+		private void TalkEndedEventHandler(AudioClip clip, float[] raw) => EndTalkigEvent?.Invoke(clip, raw);
+		private void RecordStartedEventHandler() => StartedRecordEvent?.Invoke();
+		private void RecordEndedEventHandler(AudioClip clip, float[] raw) => FinishedRecordEvent?.Invoke(clip, raw);
+		private void GetOperationSuccessEventHandler(Operation operation) => GetOperationSuccessEvent?.Invoke(operation);
+		private void GetOperationFailedEventHandler(string error) => GetOperationFailedEvent?.Invoke(error);
+		private void ListOperationsSuccessEventHandler(ListOperationsResponse operationsResponse) => ListOperationsSuccessEvent?.Invoke(operationsResponse);
+		private void ListOperationsFailedEventHandler(string error) => ListOperationsFailedEvent?.Invoke(error);
 		#endregion
 	}
 }

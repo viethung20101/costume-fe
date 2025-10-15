@@ -9,10 +9,14 @@ using System.Linq;
 using UnityEngine.EventSystems;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using UnityEngine.Networking; // 👈 thêm dòng này để dùng UnityWebRequest
+using TMPro;
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 {
     public class GCSR_DoCommandsExample : MonoBehaviour
     {
+        [Header("Text ChatBot")]
+        [SerializeField] TextMeshProUGUI TextComponent;
         [TextAreaAttribute(8, 100)]
         public string[] language_VN_EN;
         private GCSpeechRecognition _speechRecognition;
@@ -28,19 +32,19 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         public GameObject[] ButtonLanguage;
         [SerializeField] TextDialogue_EN textDialogue_EN;
         [SerializeField] TextDialogue_VN textDialogue_VN;
-        [Header("Aduio Clip Language VN & EN")]
-        public AudioClip[] Audio_language_VN;
-        public AudioClip[] Audio_language_EN;
+        public bool voice_VN_EN;
+        private void Awake()
+        {
+
+        }
         private void Start()
         {
             textDialogue_EN.enabled = false;
             textDialogue_VN.enabled = true;
-            // _commandsInputField.text = language_VN_EN[1];
             ButtonLanguage[0].SetActive(true);
             ButtonLanguage[1].SetActive(false);
-            _speechRecognition = GCSpeechRecognition.Instance;
 
-            // event handlers
+            _speechRecognition = GCSpeechRecognition.Instance;
             _speechRecognition.RecognizeSuccessEvent += RecognizeSuccessEventHandler;
             _speechRecognition.RecognizeFailedEvent += RecognizeFailedEventHandler;
             _speechRecognition.FinishedRecordEvent += FinishedRecordEventHandler;
@@ -48,7 +52,6 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.RecordFailedEvent += RecordFailedEventHandler;
             _speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-            // UI setup
             _speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
             _resultText = transform.Find("Canvas/Text_Result").GetComponent<Text>();
             _commandsInputField = transform.Find("Canvas/InputField_Commands").GetComponent<InputField>();
@@ -62,18 +65,14 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.RequestMicrophonePermission(null);
             RefreshMicsButtonOnClickHandler();
             _commandsInputField.text = language_VN_EN[0];
-            // load languages
-            for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
-            {
-                _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
-            }
-            _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
 
-            // select first mic
+            for (int i = 0; i < Enum.GetNames(typeof(Enumerators.LanguageCode)).Length; i++)
+                _languageDropdown.options.Add(new Dropdown.OptionData(((Enumerators.LanguageCode)i).Parse()));
+
+            _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse()));
+
             if (_speechRecognition.HasConnectedMicrophoneDevices())
-            {
                 _speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[0]);
-            }
         }
 
         private void OnDestroy()
@@ -88,10 +87,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
         public void StartRecordButtonOnClickHandler(BaseEventData data)
         {
-
             StartCoroutine(TemporaryStart());
-
         }
+
         IEnumerator TemporaryStart()
         {
             yield return new WaitForSeconds(0.13f);
@@ -99,15 +97,15 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _resultText.text = string.Empty;
             _speechRecognition.StartRecord(false);
         }
+
         private void RefreshMicsButtonOnClickHandler()
         {
             _speechRecognition.RequestMicrophonePermission(null);
-
             _microphoneDevicesDropdown.ClearOptions();
             _microphoneDevicesDropdown.AddOptions(_speechRecognition.GetMicrophoneDevices().ToList());
-
             MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
         }
+
         private void Update()
         {
             if (_speechRecognition.IsRecording)
@@ -116,16 +114,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
                 {
                     float max = (float)_speechRecognition.configs[_speechRecognition.currentConfigIndex].voiceDetectionThreshold;
                     float current = _speechRecognition.GetLastFrame() / max;
-
-                    if (current >= 1f)
-                    {
-                        _voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 1f), 30 * Time.deltaTime);
-                    }
-                    else
-                    {
-                        _voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 0.5f), 30 * Time.deltaTime);
-                    }
-
+                    _voiceLevelImage.fillAmount = Mathf.Lerp(_voiceLevelImage.fillAmount, Mathf.Clamp(current / 2f, 0, 1f), 30 * Time.deltaTime);
                     _voiceLevelImage.color = current >= 1f ? Color.green : Color.red;
                 }
             }
@@ -134,16 +123,19 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
                 _voiceLevelImage.fillAmount = 0f;
             }
         }
+
         private void MicrophoneDevicesDropdownOnValueChangedEventHandler(int value)
         {
             if (!_speechRecognition.HasConnectedMicrophoneDevices())
                 return;
             _speechRecognition.SetMicrophoneDevice(_speechRecognition.GetMicrophoneDevices()[value]);
         }
+
         public void StopRecordButtonOnClickHandler(BaseEventData data)
         {
             StartCoroutine(TemporaryStop());
         }
+
         IEnumerator TemporaryStop()
         {
             yield return new WaitForSeconds(0.13f);
@@ -151,10 +143,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _speechRecognition.StopRecord();
         }
 
-        private void StartedRecordEventHandler()
-        {
-            _speechRecognitionState.color = Color.red;
-        }
+        private void StartedRecordEventHandler() => _speechRecognitionState.color = Color.red;
 
         private void RecordFailedEventHandler()
         {
@@ -163,20 +152,12 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             _startRecordButton.interactable = true;
         }
 
-        private void EndTalkigEventHandler(AudioClip clip, float[] raw)
-        {
-            FinishedRecordEventHandler(clip, raw);
-        }
+        private void EndTalkigEventHandler(AudioClip clip, float[] raw) => FinishedRecordEventHandler(clip, raw);
 
         private void FinishedRecordEventHandler(AudioClip clip, float[] raw)
         {
-            if (_startRecordButton.interactable)
-            {
-                _speechRecognitionState.color = Color.yellow;
-            }
-
-            if (clip == null)
-                return;
+            if (_startRecordButton.interactable) _speechRecognitionState.color = Color.yellow;
+            if (clip == null) return;
 
             RecognitionConfig config = RecognitionConfig.GetDefault();
             config.languageCode = ((Enumerators.LanguageCode)_languageDropdown.value).Parse();
@@ -184,10 +165,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
 
             GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
             {
-                audio = new RecognitionAudioContent()
-                {
-                    content = raw.ToBase64()
-                },
+                audio = new RecognitionAudioContent() { content = raw.ToBase64() },
                 config = config
             };
 
@@ -198,71 +176,116 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         {
             _resultText.text = "Recognize Failed: " + error;
         }
+
         public void On_EN()
         {
+             voice_VN_EN = false;
             ButtonLanguage[0].SetActive(false);
             ButtonLanguage[1].SetActive(true);
             _commandsInputField.text = language_VN_EN[1];
             _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.en_US.Parse()));
         }
+
         public void On_VN()
         {
+            voice_VN_EN = true;
             ButtonLanguage[1].SetActive(false);
             ButtonLanguage[0].SetActive(true);
             _commandsInputField.text = language_VN_EN[0];
-            _languageDropdown.value = _languageDropdown.options.IndexOf(
-               _languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse())); // đổi sang tiếng Việt
-
-
+            _languageDropdown.value = _languageDropdown.options.IndexOf(_languageDropdown.options.Find(x => x.text == Enumerators.LanguageCode.vi_VN.Parse()));
         }
-        private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
+    // ✅ Hàm tự động phát hiện tiếng Việt / tiếng Anh
+      private void RecognizeSuccessEventHandler(RecognitionResponse recognitionResponse)
 {
+    if (_resultText == null)
+    {
+        Debug.LogError("❌ _resultText is not assigned in the inspector!");
+        return;
+    }
+
+    if (_commandsInputField == null)
+    {
+        Debug.LogError("❌ _commandsInputField is not assigned in the inspector!");
+        return;
+    }
+
+    if (recognitionResponse == null || recognitionResponse.results == null)
+    {
+        _resultText.text = "⚠️ No recognition results received.";
+        Debug.LogWarning("recognitionResponse or its results is null!");
+        return;
+    }
+
     _resultText.text = "Detected: ";
 
+    // lấy danh sách các lệnh được khai báo
     string[] commands = _commandsInputField.text.Split(',');
     for (int i = 0; i < commands.Length; i++)
         commands[i] = commands[i].Trim().ToLowerInvariant();
 
+    // xử lý từng kết quả nhận dạng
     foreach (var result in recognitionResponse.results)
     {
+        if (result.alternatives == null) continue;
+
         foreach (var alternative in result.alternatives)
         {
+            if (alternative == null || string.IsNullOrEmpty(alternative.transcript))
+                continue;
+
             string cleanTranscript = alternative.transcript.Trim().ToLowerInvariant();
-            cleanTranscript = System.Text.RegularExpressions.Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
-
+            cleanTranscript = Regex.Replace(cleanTranscript, @"[^\p{L}\p{N}\s]", "");
             _resultText.text += "\nUser said: " + cleanTranscript;
-
-            bool matched = false;
 
             foreach (var command in commands)
             {
                 if (cleanTranscript.Contains(command))
                 {
-                    matched = true;
                     _resultText.text += "\n✅ Did command: " + command;
-                    Debug.Log("🎯 Voice matched command: " + command);
 
+                    // 👉 Thực thi lệnh và chatbot
                     DoCommand(command);
+                    ChatbotResponse(cleanTranscript); // Truyền cả ngôn ngữ vào
                     break;
                 }
             }
-
-          
-          
-                ChatbotResponse(cleanTranscript);
-         
-            
         }
     }
 }
-       void ChatbotResponse(string message)
+
+
+string DetectLanguage(string text)
+{
+    string vietnameseChars = "ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệòóỏõọồốổỗộờớởỡợùúủũụừứửữựìíỉĩịỳýỷỹỵ";
+    foreach (char c in vietnameseChars)
+    {
+        if (text.Contains(c.ToString(), StringComparison.OrdinalIgnoreCase))
+            return "vi-VN";
+    }
+    return "en-US";
+}
+       
+        void ChatbotResponse(string message)
 {
     StartCoroutine(new ChatbotAPIs().ChatbotRequest(
         message,
         (result) =>
         {
             Debug.Log("🤖 Chatbot response: " + result);
-            _resultText.text += "\n🤖 " + result; // hiện luôn text chatbot trên UI
+            _resultText.text += "\n🤖 " + result;
+                string detectedLang = DetectLanguage(result);
+            if (voice_VN_EN == true)
+            {
+                TextComponent.text = result;
+                   textDialogue_VN?.ShowChatbotResponse(result);
+                StartCoroutine(SpeakText(result, detectedLang)); 
+            }
+            else if (voice_VN_EN == false)
+            {
+                TextComponent.text = result;
+                textDialogue_EN?.ShowChatbotResponse(result);
+                   StartCoroutine(SpeakText(result, detectedLang)); // tiếng Anh
+            }
         },
         (error) =>
         {
@@ -271,102 +294,179 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
         }
     ));
 }
+
+  [System.Serializable]
+public class TextToSpeechRequest
+{
+    public InputData input;
+    public VoiceData voice;
+    public AudioConfigData audioConfig;
+}
+
+[System.Serializable]
+public class InputData
+{
+    public string text;
+}
+
+[System.Serializable]
+public class VoiceData
+{
+    public string languageCode;
+    public string name;
+    public string ssmlGender;
+}
+
+[System.Serializable]
+public class AudioConfigData
+{
+    public string audioEncoding;
+}
+
+[System.Serializable]
+public class TextToSpeechResponse
+{
+    public string audioContent;
+}
+
+IEnumerator SpeakText(string text, string languageCode)
+{
+    string apiKey = _speechRecognition.apiKey;
+    string url = $"https://texttospeech.googleapis.com/v1/text:synthesize?key={apiKey}";
+
+    string voiceName = (languageCode == "vi-VN") ? "vi-VN-Wavenet-A" : "en-US-Wavenet-D";
+
+    // Dùng class để tạo JSON (Unity JsonUtility chỉ hỗ trợ class, không hỗ trợ anonymous object)
+    TextToSpeechRequest requestData = new TextToSpeechRequest
+    {
+        input = new InputData { text = text },
+        voice = new VoiceData { languageCode = languageCode, name = voiceName, ssmlGender = "NEUTRAL" },
+        audioConfig = new AudioConfigData { audioEncoding = "LINEAR16" }
+    };
+
+    string jsonBody = JsonUtility.ToJson(requestData);
+
+    using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
+    {
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody);
+        www.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        www.downloadHandler = new DownloadHandlerBuffer();
+        www.SetRequestHeader("Content-Type", "application/json");
+
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.Success)
+        {
+            TextToSpeechResponse response = JsonUtility.FromJson<TextToSpeechResponse>(www.downloadHandler.text);
+            byte[] audioBytes = Convert.FromBase64String(response.audioContent);
+
+            WAV wav = new WAV(audioBytes);
+            AudioClip audioClip = AudioClip.Create("TTS", wav.SampleCount, 1, wav.Frequency, false);
+            audioClip.SetData(wav.LeftChannel, 0);
+
+            audioSource.clip = audioClip;
+            audioSource.Play();
+        }
+        else
+        {
+            Debug.LogError($"❌ TTS Error ({languageCode}): " + www.downloadHandler.text);
+        }
+    }
+}
+
+
+        // ✅ CLASS GIẢI MÃ WAV
+        public class WAV
+        {
+            public float[] LeftChannel;
+            public int ChannelCount;
+            public int SampleCount;
+            public int Frequency;
+
+            public WAV(byte[] wav)
+            {
+                ChannelCount = BitConverter.ToInt16(wav, 22);
+                Frequency = BitConverter.ToInt32(wav, 24);
+                int pos = 44;
+                int samples = (wav.Length - pos) / 2;
+                LeftChannel = new float[samples];
+                for (int i = 0; i < samples; i++)
+                    LeftChannel[i] = BytesToFloat(wav[pos + i * 2], wav[pos + i * 2 + 1]);
+                SampleCount = samples;
+            }
+
+            private static float BytesToFloat(byte firstByte, byte secondByte)
+            {
+                short s = (short)((secondByte << 8) | firstByte);
+                return s / 32768.0F;
+            }
+        }
+
+        // ✅ CÁC HÀM COMMAND CŨ GIỮ NGUYÊN
         private void DoCommand(string rawCommand)
         {
-            // chuẩn hóa transcript đầu vào
             string command = NormalizeText(rawCommand);
             Debug.Log($"💬 DO COMMAND với text: [{command}]");
 
-            // build commandMap động
             Dictionary<string, System.Action> commandMap = new Dictionary<string, System.Action>();
-
             string[] vietnameseCommands = (language_VN_EN.Length > 0) ? language_VN_EN[0].Split(',') : new string[0];
             string[] englishCommands = (language_VN_EN.Length > 1) ? language_VN_EN[1].Split(',') : new string[0];
-
             int maxLen = Math.Max(vietnameseCommands.Length, englishCommands.Length);
 
             for (int i = 0; i < maxLen; i++)
             {
                 int index = i;
-
-                // VN
                 if (i < vietnameseCommands.Length)
                 {
-                    string rawVN = vietnameseCommands[i];
-                    string keyVN = NormalizeText(rawVN);
-                    if (!string.IsNullOrEmpty(keyVN) && !commandMap.ContainsKey(keyVN))
+                    string keyVN = NormalizeText(vietnameseCommands[i]);
+                    if (!commandMap.ContainsKey(keyVN))
                     {
-                        // thêm hành động cho VN tại index
                         commandMap.Add(keyVN, () =>
                         {
-                            if (Audio_language_VN != null && index < Audio_language_VN.Length && Audio_language_VN[index] != null)
-                            {
-                                audioSource.clip = Audio_language_VN[index];
-                                audioSource.Play();
-                            }
-                            textDialogue_VN?.Update_Text(index);
-                            Debug.Log($"✅ Executed VN index: {index} for key: [{keyVN}]");
+                         //   if (Audio_language_VN != null && index < Audio_language_VN.Length && Audio_language_VN[index] != null)
+                         //   {
+                               // audioSource.clip = Audio_language_VN[index];
+                               // audioSource.Play();
+                          //  }
+                           
                         });
-
-                        Debug.Log($"Added VN key [{keyVN}] => index {index}");
                     }
                 }
 
-                // EN
                 if (i < englishCommands.Length)
                 {
-                    string rawEN = englishCommands[i];
-                    string keyEN = NormalizeText(rawEN);
-                    if (!string.IsNullOrEmpty(keyEN) && !commandMap.ContainsKey(keyEN))
+                    string keyEN = NormalizeText(englishCommands[i]);
+                    if (!commandMap.ContainsKey(keyEN))
                     {
                         commandMap.Add(keyEN, () =>
                         {
-                            if (Audio_language_EN != null && index < Audio_language_EN.Length && Audio_language_EN[index] != null)
-                            {
-                                audioSource.clip = Audio_language_EN[index];
-                                audioSource.Play();
-                            }
-                            textDialogue_EN?.Update_Text(index);
-                            Debug.Log($"✅ Executed EN index: {index} for key: [{keyEN}]");
+                            //if (Audio_language_EN != null && index < Audio_language_EN.Length && Audio_language_EN[index] != null)
+                         //   {
+                             //   audioSource.clip = Audio_language_EN[index];
+                              //  audioSource.Play();
+                         //   }
+                         
                         });
-
-                        Debug.Log($"Added EN key [{keyEN}] => index {index}");
                     }
                 }
             }
 
-            bool found = false;
             foreach (var kvp in commandMap)
             {
                 if (command.Contains(kvp.Key))
                 {
                     kvp.Value.Invoke();
-                    Debug.Log("✅ Executed command (match): " + kvp.Key);
-                    found = true;
-                    break;
+                    return;
                 }
             }
-
-            if (!found)
-            {
-                Debug.Log("❌ NOT FOUND COMMAND: " + command + " (len=" + command.Length + ")");
-            }
-
         }
+
         private string NormalizeText(string input)
         {
             if (string.IsNullOrEmpty(input)) return string.Empty;
-
-            input = input.Trim().ToLowerInvariant();
-
-
-            input = Regex.Replace(input, @"[^\p{L}\p{N}\s]", "");
-
+            input = Regex.Replace(input.ToLowerInvariant().Trim(), @"[^\p{L}\p{N}\s]", "");
             input = RemoveVietnameseDiacritics(input);
-
-            input = Regex.Replace(input, @"\s+", " ").Trim();
-
-            return input;
+            return Regex.Replace(input, @"\s+", " ").Trim();
         }
 
         public static string RemoveVietnameseDiacritics(string input)
@@ -376,11 +476,12 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.V1.Examples
             var sb = new StringBuilder();
             foreach (var c in normalized)
             {
-                var uc = CharUnicodeInfo.GetUnicodeCategory(c);
-                if (uc != UnicodeCategory.NonSpacingMark)
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                     sb.Append(c);
             }
             return sb.ToString().Normalize(NormalizationForm.FormC);
         }
     }
+    [System.Serializable]
+        public class TextToSpeechResponse { public string audioContent; }
 }

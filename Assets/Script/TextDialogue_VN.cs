@@ -1,57 +1,55 @@
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 using System.Collections;
+
 public class TextDialogue_VN : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI TextComponent;
-    [SerializeField] private float Speed;
-    [TextArea(3,100)]
-    [SerializeField] string[] Lines;
-    [SerializeField] private int Index;
+    [Header("UI Settings")]
+    [SerializeField] private TextMeshProUGUI TextComponent;
+    [SerializeField] private float Speed = 0.03f;
+
+    private Coroutine typingCoroutine;
+
     void Start()
     {
-      TextComponent.text = string.Empty;
-      StartDialogue();        
+        if (TextComponent != null)
+            TextComponent.text = string.Empty;
     }
-   private void StartDialogue()
-   {
-    Index = 0;
-    StartCoroutine(TypeLines());
-   }
-   private void NextLines()
-   {
-    if(Index < Lines.Length - 1)
+
+    // ✅ Hiển thị văn bản động (có thể truyền từ chatbot)
+    public void ShowChatbotResponse(string message)
     {
-        Index++;
-      
+        // Dừng gõ nếu đang gõ dở
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+
+        typingCoroutine = StartCoroutine(TypeMessage(message));
+    }
+
+    // Gõ từng ký tự một, hiệu ứng chatbot
+    private IEnumerator TypeMessage(string message)
+    {
         TextComponent.text = string.Empty;
-          StartCoroutine(TypeLines());
-    }
-    else
-    {
-       gameObject.SetActive(true);
-    }
-   }
-   IEnumerator TypeLines()
-   {
-    foreach(char C in Lines[Index].ToCharArray())
-    {
-        TextComponent.text += C;
-       yield return new WaitForSeconds(Speed);
-    }
-   }
-    // Update is called once per frame
-    public void Update_Text(int Index)
-    {
-        if (TextComponent.text == Lines[Index])
+
+        foreach (char c in message)
         {
-             NextLines();
+            TextComponent.text += c;
+            yield return new WaitForSeconds(Speed);
         }
-        else
-        {
-            StopAllCoroutines();
-            TextComponent.text = Lines[Index];
-        }
+
+        typingCoroutine = null;
+    }
+
+    // ⚙️ Hàm tùy chọn nếu bạn muốn gán tốc độ hoặc reset text
+    public void ClearDialogue()
+    {
+        if (typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+        TextComponent.text = string.Empty;
+    }
+
+    public void SetSpeed(float newSpeed)
+    {
+        Speed = Mathf.Max(0.001f, newSpeed);
     }
 }

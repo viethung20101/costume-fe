@@ -6,7 +6,7 @@ public static class ApiConfig
 {
     // URL gốc của API
     // public static string BaseUrl = "http://88.222.242.207:9944/api"; //Server
-    public static string BaseUrl = "http://10.220.19.71:5566/api"; // Local
+    public static string BaseUrl = "http://72.60.233.86:9944/api"; // Local
     public static string BaseImageUrl = "http://10.220.19.71:5566"; // Local
 
     //Common Function to load image from URL
