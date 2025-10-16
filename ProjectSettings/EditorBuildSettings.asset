@@ -36,11 +36,17 @@ EditorBuildSettings:
     path: "Assets/Scenes/Scene_Tuong/T\u01B0\u1EDBng.unity"
     guid: 23de2adfcadb6794f9ecfc5b239e71b5
   - enabled: 1
-    path: Assets/Scenes/Scene_LoadScene/LoadScene.unity
-    guid: a971e7553857ef844a6bdd7840eb40c7
-  - enabled: 1
     path: "Assets/Scenes/Scene_Linh/L\xEDnh.unity"
     guid: 8fa1d50a4d5bcca489c9a0ad34eaa71c
+  - enabled: 1
+    path: "Assets/Scenes/Scene_CongChua/C\xF4ng Ch\xFAa.unity"
+    guid: 936cb9f6188a90a48afbdb83f4e6a6db
+  - enabled: 1
+    path: "Assets/Scenes/Scene_DanThuong/D\xE2n th\u01B0\u1EDDng.unity"
+    guid: cd2c3dddcb168fa41ba1366f9ec989da
+  - enabled: 1
+    path: "Assets/Scenes/Scene_HoangTu/Ho\xE0ng T\u1EED.unity"
+    guid: d1c3970c51673e641a48e2a648590170
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
