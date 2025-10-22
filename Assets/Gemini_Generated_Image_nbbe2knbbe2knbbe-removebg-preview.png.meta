@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4fce87fd2fbc36449a56afc7135ac64e
+guid: ce78e3474f115dd4ba7e7da8794b323e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Group 615_0
+      name: Gemini_Generated_Image_nbbe2knbbe2knbbe-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 16
-        width: 17
-        height: 47
+        x: 134
+        y: 184
+        width: 232
+        height: 124
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77787c295b4230b45a1756d344ccec9e
-      internalID: 2101743971
+      spriteID: 60d04704912a5a047966eb4d723c012d
+      internalID: 477066091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Group 615_1
+      name: Gemini_Generated_Image_nbbe2knbbe2knbbe-removebg-preview_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 16
-        width: 68
-        height: 59
+        x: 461
+        y: 15
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,30 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ea05c4a527463d49afbc9bc3630c8da
-      internalID: -1363363187
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Group 615_2
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 16
-        width: 89
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 796d8623977f414489babe070f55fa0e
-      internalID: -1806955270
+      spriteID: 2ea22e54c1fd40c45b00cab1bdbb47e6
+      internalID: 1558517380
       vertices: []
       indices: 
       edges: []
@@ -192,7 +170,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 432c5ed486f93614f99136a3edfa03af
+    spriteID: 846f8bc8e14ec0a4b85b86a5b5b0435e
     internalID: 0
     vertices: []
     indices: 
@@ -204,9 +182,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Group 615_0: 2101743971
-      Group 615_1: -1363363187
-      Group 615_2: -1806955270
+      Gemini_Generated_Image_nbbe2knbbe2knbbe-removebg-preview_0: 477066091
+      Gemini_Generated_Image_nbbe2knbbe2knbbe-removebg-preview_1: 1558517380
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
