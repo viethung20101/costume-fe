@@ -606,8 +606,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hdsfbbhdhhshisdakh dhsh yiidhshid hfhdus hdhsds iuodydj nkiyo kssaodhi
-    dkdks
+  m_text: "Mua ho\u1EB7c \u0111\u1EB7t may Vi\u1EC7t ph\u1EE5c t\u1EEB c\xE1c th\u01B0\u01A1ng
+    hi\u1EC7u uy t\xEDn. K\u1EBFt n\u1ED1i v\u1EDBi nh\u1EEFng nh\xE0 thi\u1EBFt
+    k\u1EBF Vi\u1EC7t ph\u1EE5c hi\u1EC7n \u0111\u1EA1i."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -634,8 +635,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34.2
+  m_fontSizeBase: 34.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3475,7 +3476,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -19}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255018772
@@ -3498,8 +3499,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hdsfbbhdhhshisdakh dhsh yiidhshid hfhdus hdhsds iuodydj nkiyo kssaodhi
-    dkdks
+  m_text: "Tu\u1EF3 ch\u1EC9nh m\xE0u s\u1EAFc, hoa v\u0103n v\xE0 ch\u1EA5t li\u1EC7u
+    Vi\u1EC7t ph\u1EE5c theo s\u1EDF th\xEDch. T\u1EA1o n\xEAn b\u1ED9 trang ph\u1EE5c
+    mang d\u1EA5u \u1EA5n ri\xEAng c\u1EE7a b\u1EA1n."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3526,8 +3528,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 33
+  m_fontSizeBase: 33
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3951,8 +3953,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hdsfbbhdhhshisdakh dhsh yiidhshid hfhdus hdhsds iuodydj nkiyo kssaodhi
-    dkdks
+  m_text: "Tr\u1EA3i nghi\u1EC7m m\u1EB7c th\u1EED Vi\u1EC7t ph\u1EE5c qua c\xF4ng
+    ngh\u1EC7 3D. Xem trang ph\u1EE5c hi\u1EC3n th\u1ECB tr\u1EF1c ti\u1EBFp tr\xEAn
+    c\u01A1 th\u1EC3 b\u1EA1n."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4916,7 +4919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747409319
@@ -4939,8 +4942,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hdsfbbhdhhshisdakh dhsh yiidhshid hfhdus hdhsds iuodydj nkiyo kssaodhi
-    dkdks
+  m_text: "T\xECm hi\u1EC3u l\u1ECBch s\u1EED v\xE0 \xFD ngh\u0129a c\u1EE7a c\xE1c
+    lo\u1EA1i Vi\u1EC7t ph\u1EE5c qua t\u1EEBng th\u1EDDi k\u1EF3. Hi\u1EC3u th\xEAm
+    v\u1EC1 v\u0103n ho\xE1 v\xE0 phong c\xE1ch m\u1EB7c c\u1EE7a ng\u01B0\u1EDDi
+    Vi\u1EC7t x\u01B0a."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4967,8 +4972,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34.62
+  m_fontSizeBase: 34.62
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
